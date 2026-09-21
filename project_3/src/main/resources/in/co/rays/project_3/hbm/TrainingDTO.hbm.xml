@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 21, 2026, 11:19:17 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping package="in.co.rays.project_3.dto">
+	<class name="TrainingDTO" table="ST_TRAINING">
+		<id name="id" type="java.lang.Long">
+			<column name="ID" ></column>
+			<generator class="increment" ></generator>
+		</id>
+        <property name="trainerName" type="java.lang.String">
+            <column name="TRAINERNAME" />
+        </property>
+        <property name="trainingDate" type="java.time.LocalDate">
+            <column name="TRAININGDATE" />
+        </property>
+        <property name="trainingName" type="java.lang.String">
+            <column name="TRAININGNAME" />
+        </property>
+        <property name="trainingStatus" type="java.lang.String">
+            <column name="TRAININGSTATUS" />
+        </property>
+        <property name="trainingCode" type="java.lang.String">
+            <column name="TRAININGCODE" />
+        </property>
+        <property name="createdBy" type="java.lang.String" length="50">
+			<column name="CREATED_BY" />
+		</property>
+		<property name="modifiedBy" type="java.lang.String" length="50">
+			<column name="MODIFIED_BY" />
+		</property>
+		<property name="createdDatetime" type="java.sql.Timestamp">
+			<column name="CREATED_DATETIME" />
+		</property>
+		<property name="modifiedDatetime" type="java.sql.Timestamp">
+			<column name="MODIFIED_DATETIME" />
+		</property>
+    </class>
+</hibernate-mapping>

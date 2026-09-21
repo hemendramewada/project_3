@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 27, 2026, 11:34:01 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <subclass name="in.co.rays.project_3.dto.SettingsDTO" extends="in.co.rays.project_3.dto.BaseDTO" discriminator-value="SettingsDTO" lazy="false">
+        <property name="settingName" type="java.lang.String">
+            <column name="SETTINGNAME" />
+        </property>
+        <property name="settingStatus" type="java.lang.String">
+            <column name="SETTINGSTATUS" />
+        </property>
+        <property name="settingValue" type="java.lang.String">
+            <column name="SETTINGVALUE" />
+        </property>
+        <property name="settingType" type="java.lang.String">
+            <column name="SETTINGTYPE" />
+        </property>
+    </subclass>
+</hibernate-mapping>
