@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="in.co.rays.project_3.dto">
+
+	<class name="VoiceCommandDTO" table="ST_VOICE_COMMAND">
+
+		<id name="commandId" type="java.lang.Long">
+			<column name="COMMAND_ID"></column>
+			<generator class="increment"></generator>
+		</id>
+
+		<property name="commandCode" type="java.lang.String">
+			<column name="COMMAND_CODE" />
+		</property>
+		<property name="userName" type="java.lang.String">
+			<column name="USERNAME" />
+		</property>
+		<property name="commandText" type="java.lang.String">
+			<column name="COMMANDTEXT" />
+		</property>
+		<property name="status" type="java.lang.String">
+			<column name="STATUS" />
+		</property>
+	</class>
+</hibernate-mapping>

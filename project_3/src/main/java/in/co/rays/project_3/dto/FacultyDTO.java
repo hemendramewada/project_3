@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  *  faculty JavaDto encapsulates faculty attributes
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 
@@ -132,12 +132,12 @@ public class FacultyDTO extends BaseDTO{
 	}
 
 	public String getKey() {
-		
+		// TODO Auto-generated method stub
 		return id+"";
 	}
 
 	public String getValue() {
-	
+		// TODO Auto-generated method stub
 		return firstName;
 	}
 

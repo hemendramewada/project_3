@@ -12,13 +12,14 @@ import org.apache.log4j.Logger;
 import in.co.rays.project_3.util.ServletUtility;
 
 /**
- * welcome functionality controller.to show welcome page
- * 
- * @author Hemendra mewada
+ * welcome functionality controller.to  show welcome page
+ * @author Rajendra Singh
  *
  */
 @WebServlet(name = "WelcomeCtl", urlPatterns = { "/WelcomeCtl" })
 public class WelcomeCtl extends BaseCtl {
+
+	private static final long serialVersionUID = 1L;
 
 	private static Logger log = Logger.getLogger(WelcomeCtl.class);
 
@@ -28,7 +29,6 @@ public class WelcomeCtl extends BaseCtl {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		log.debug("WelcomeCtl Method doGet Started");
 
 		ServletUtility.forward(ORSView.WELCOME_VIEW, request, response);
@@ -42,3 +42,4 @@ public class WelcomeCtl extends BaseCtl {
 	}
 
 }
+

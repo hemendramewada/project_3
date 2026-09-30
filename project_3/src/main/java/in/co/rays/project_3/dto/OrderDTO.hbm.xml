@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="in.co.rays.project_3.dto">
+
+	<class name="OrderDTO" table="st_order">
+
+		<id name="orderId" type="java.lang.Long">
+
+			<column name="ORDER_ID" />
+
+			<generator class="increment" />
+
+		</id>
+
+
+		<property name="orderDate" type="java.util.Date">
+
+			<column name="ORDER_DATE" />
+
+		</property>
+
+
+		<property name="status" type="java.lang.String">
+
+			<column name="STATUS" />
+
+		</property>
+
+
+		<property name="customerId" type="java.lang.Long">
+
+			<column name="CUSTOMER_ID" />
+
+		</property>
+
+	</class>
+
+</hibernate-mapping>
+

@@ -23,7 +23,7 @@ import in.co.rays.project_3.util.ServletUtility;
 /**
  * change password operation functionality perform
  * 
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 @WebServlet(urlPatterns = { "/ctl/ChangePasswordCtl" })
@@ -31,11 +31,9 @@ public class ChangePasswordCtl extends BaseCtl {
 	private static Logger log = Logger.getLogger(ChangePasswordCtl.class);
 
 	protected boolean validate(HttpServletRequest request) {
-
+		
 		log.debug("change password validate method start");
-
 		boolean pass = true;
-
 		String op = request.getParameter("operation");
 		if (OP_CHANGE_MY_PROFILE.equalsIgnoreCase(op)) {
 			return pass;
@@ -79,7 +77,7 @@ public class ChangePasswordCtl extends BaseCtl {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
+		
 		ServletUtility.forward(getView(), request, response);
 
 	}
@@ -89,29 +87,20 @@ public class ChangePasswordCtl extends BaseCtl {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
 		HttpSession session = request.getSession();
-
 		log.debug("change password do post start");
-
 		String op = DataUtility.getString(request.getParameter("operation"));
-
 		UserModelInt model = ModelFactory.getInstance().getUserModel();
 
 		UserDTO UserBean = (UserDTO) session.getAttribute("user");
 		String newPassword = request.getParameter("newpassword");
 		String oldPassword = request.getParameter("oldpassword");
-
 		long id = UserBean.getId();
-
-//		System.out.println("do post id..." + id + "...." + UserBean.getPassword() + ";;;;;;;;;" + UserBean.getId()
-//				+ "....." + newPassword + "...." + oldPassword);
+	
 		if (OP_SAVE.equalsIgnoreCase(op)) {
-
 			try {
 				boolean flag = model.changePassword(id, newPassword, oldPassword);
 				if (flag == true) {
-
 					model.findByLogin(UserBean.getLogin());
 					ServletUtility.setSuccessMessage("Password has been change successfully", request);
 				}
@@ -137,7 +126,7 @@ public class ChangePasswordCtl extends BaseCtl {
 	}
 
 	protected String getView() {
-
+		// TODO Auto-generated method stub
 		return ORSView.CHANGE_PASSWORD_VIEW;
 	}
 

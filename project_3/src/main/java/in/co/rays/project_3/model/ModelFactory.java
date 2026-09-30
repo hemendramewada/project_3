@@ -6,10 +6,7 @@ import java.util.ResourceBundle;
 /**
  * ModelFactory decides which model implementation run
  * 
- * @author Hemendra mewada
- * 
- * 
- *
+ * @author Rajendra Singh
  */
 public final class ModelFactory {
 
@@ -24,31 +21,12 @@ public final class ModelFactory {
 
 	public static ModelFactory getInstance() {
 		if (mFactory == null) {
+
 			mFactory = new ModelFactory();
 		}
 		return mFactory;
+
 	}
-
-	public HostelModelInt getHostelModel() {
-
-		HostelModelInt hostelModel = (HostelModelInt) modelCache.get("hostelModel");
-
-		if (hostelModel == null) {
-
-			if ("Hibernate".equals(DATABASE)) {
-				hostelModel = new HostelModelHibImp();
-			}
-
-			if ("JDBC".equals(DATABASE)) {
-				hostelModel = new HostelModelJDBCImpl();
-			}
-
-			modelCache.put("hostelModel", hostelModel);
-		}
-
-		return hostelModel;
-	}
-
 
 	public MarksheetModelInt getMarksheetModel() {
 		MarksheetModelInt marksheetModel = (MarksheetModelInt) modelCache.get("marksheetModel");
@@ -186,106 +164,486 @@ public final class ModelFactory {
 
 		return facultyModel;
 	}
-	public SettingsModelInt getSettingsModel() {
 
-		SettingsModelInt settingsModel = 
-				(SettingsModelInt) modelCache.get("settingsModel");
-
-		if (settingsModel == null) {
-
+	public ProfileModelInt getProfileModel() {
+		ProfileModelInt profileModel = (ProfileModelInt) modelCache.get("profileModel");
+		if (profileModel == null) {
 			if ("Hibernate".equals(DATABASE)) {
-				settingsModel = new SettingsModelHibImp();
+				profileModel = new ProfileModelHibImpl();
 			}
-
 			if ("JDBC".equals(DATABASE)) {
-				settingsModel = new SettingsModelHibImp(); // agar JDBC alag ho to yaha change karna
+				profileModel = new ProfileModelHibImpl();
 			}
-
-			modelCache.put("settingsModel", settingsModel);
+			modelCache.put("profileModel", profileModel);
 		}
 
-		return settingsModel;
-    }
-	
-	public TrainingModelInt getTrainingModel() {
-
-		TrainingModelInt trainingModel = 
-				(TrainingModelInt) modelCache.get("trainingModel");
-
-		if (trainingModel == null) {
-
-			if ("Hibernate".equals(DATABASE)) {
-				trainingModel = new TrainingModelHibImp();
-			}
-
-			if ("JDBC".equals(DATABASE)) {
-				trainingModel = new TrainingModelJDBCImpl();
-			}
-
-			modelCache.put("trainingModel", trainingModel);
-		}
-
-		return trainingModel;
+		return profileModel;
 	}
-	
-	public EmployeeModelInt getEmployeeModel() {
 
-		EmployeeModelInt employeeModel =
-			(EmployeeModelInt) modelCache.get("employeeModel");
+	public InventoryModelInt getInventoryModel() {
 
-		if (employeeModel == null) {
+		InventoryModelInt inventoryModel = (InventoryModelInt) modelCache.get("inventoryModel");
 
+		if (inventoryModel == null) {
 			if ("Hibernate".equals(DATABASE)) {
-				employeeModel = new EmployeeModelHibImp();
+				inventoryModel = new InventoryModelHibImp();
 			}
 
 			if ("JDBC".equals(DATABASE)) {
-				employeeModel = new EmployeeModelJDBCImpl();
+				inventoryModel = new InventoryModelHibImp();
 			}
 
-			modelCache.put("employeeModel", employeeModel);
+			modelCache.put("inventoryModel", inventoryModel);
 		}
 
-		return employeeModel;
+		return inventoryModel;
 	}
-	
-	public MovieModelInt getMovieModel() {
 
-		MovieModelInt movieModel = (MovieModelInt) modelCache.get("movieModel");
+	public SessionModelInt getSessionModel() {
 
-		if (movieModel == null) {
+		SessionModelInt sessionModel = (SessionModelInt) modelCache.get("sessionModel");
+
+		if (sessionModel == null) {
 
 			if ("Hibernate".equals(DATABASE)) {
-				movieModel = new MovieModelHibImpl();
+				sessionModel = new SessionModelHibImp();
 			}
 
 			if ("JDBC".equals(DATABASE)) {
-				movieModel = new MovieModelJDBCImpl();
+				sessionModel = new SessionModelHibImp(); // change if JDBC impl created
 			}
 
-			modelCache.put("movieModel", movieModel);
+			modelCache.put("sessionModel", sessionModel);
 		}
 
-		return movieModel;
+		return sessionModel;
 	}
-	
-	public DecorationModelInt getDecorationModel() {
 
-		DecorationModelInt decorationModel = (DecorationModelInt) modelCache.get("decorationModel");
+	public LanguageModelInt getLanguageModel() {
 
-		if (decorationModel == null) {
+		LanguageModelInt languageModel = (LanguageModelInt) modelCache.get("languageModel");
+
+		if (languageModel == null) {
 
 			if ("Hibernate".equals(DATABASE)) {
-				decorationModel = new DecorationModelHibImp();
+				languageModel = new LanguageModelHibImp();
 			}
 
 			if ("JDBC".equals(DATABASE)) {
-				decorationModel = new DecorationModelJDBCImpl();
+				languageModel = new LanguageModelHibImp(); // change if JDBC impl created
 			}
 
-			modelCache.put("decorationModel", decorationModel);
+			modelCache.put("languageModel", languageModel);
 		}
 
-		return decorationModel;
+		return languageModel;
+	}
+
+	
+
+	public PlacementModelInt getPlacementModel() {
+
+		PlacementModelInt placementModel = (PlacementModelInt) modelCache.get("placementModel");
+
+		if (placementModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				placementModel = new PlacementModelHibImp();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				placementModel = new PlacementModelHibImp(); // change if JDBC impl created
+			}
+
+			modelCache.put("placementModel", placementModel);
+		}
+
+		return placementModel;
+	}
+
+	public HospitalModelInt getHospitalModel() {
+
+		HospitalModelInt hospitalModel = (HospitalModelInt) modelCache.get("hospitalModel");
+
+		if (hospitalModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				hospitalModel = new HospitalModelHibImp();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				hospitalModel = new HospitalModelHibImp();
+			}
+
+			modelCache.put("hospitalModel", hospitalModel);
+		}
+
+		return hospitalModel;
+	}
+
+	public DonationModelInt getDonationModel() {
+
+		DonationModelInt donationModel = (DonationModelInt) modelCache.get("donationModel");
+
+		if (donationModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				donationModel = new DonationModelHibImp();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				donationModel = new DonationModelHibImp(); // change if JDBC impl created
+			}
+
+			modelCache.put("donationModel", donationModel);
+		}
+
+		return donationModel;
+	}
+
+	public WarrantyModelInt getWarrantyModel() {
+
+		WarrantyModelInt warrantyModel = (WarrantyModelInt) modelCache.get("warrantyModel");
+
+		if (warrantyModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				warrantyModel = new WarrantyModelHibImp();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				warrantyModel = new WarrantyModelHibImp(); // change if JDBC impl created
+			}
+
+			modelCache.put("warrantyModel", warrantyModel);
+		}
+
+		return warrantyModel;
+	}
+
+	public PortfolioModelInt getPortfolioModel() {
+
+		PortfolioModelInt portfolioModel = (PortfolioModelInt) modelCache.get("portfolioModel");
+
+		if (portfolioModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				portfolioModel = new PortfolioModelHibImpl();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				portfolioModel = new PortfolioModelHibImpl(); // change if JDBC impl created
+			}
+
+			modelCache.put("portfolioModel", portfolioModel);
+		}
+
+		return portfolioModel;
+	}
+
+	public SecretModelInt getSecretModel() {
+
+		SecretModelInt secretModel = (SecretModelInt) modelCache.get("secretModel");
+
+		if (secretModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				secretModel = new SecretModelHibImpl();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				secretModel = new SecretModelHibImpl();
+			}
+
+			modelCache.put("secretModel", secretModel);
+		}
+
+		return secretModel;
+	}
+
+	public ListenerModelInt getListenerModel() {
+
+		ListenerModelInt listenerModel = (ListenerModelInt) modelCache.get("listenerModel");
+
+		if (listenerModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				listenerModel = new ListenerModelHibImpl();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				listenerModel = new ListenerModelHibImpl();
+			}
+
+			modelCache.put("listenerModel", listenerModel);
+		}
+
+		return listenerModel;
+	}
+
+	public BugTrackerModelInt getBugTrackerModel() {
+
+		BugTrackerModelInt bugTrackerModel = (BugTrackerModelInt) modelCache.get("bugTrackerModel");
+
+		if (bugTrackerModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				bugTrackerModel = new BugTrackerModelHibImpl();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				bugTrackerModel = new BugTrackerModelJDBCImpl();
+			}
+
+			modelCache.put("bugTrackerModel", bugTrackerModel);
+		}
+
+		return bugTrackerModel;
+	}
+
+	public FreelancerModelInt getFreelancerModel() {
+
+		FreelancerModelInt freelancerModel = (FreelancerModelInt) modelCache.get("freelancerModel");
+
+		if (freelancerModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				freelancerModel = new FreelancerModelHibImpl();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				freelancerModel = new FreelancerModelJDBCImpl();
+			}
+
+			modelCache.put("freelancerModel", freelancerModel);
+		}
+
+		return freelancerModel;
+
+	}
+
+	public PodcastModelInt getPodcastModel() {
+
+		PodcastModelInt podcastModel = (PodcastModelInt) modelCache.get("podcastModel");
+
+		if (podcastModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				podcastModel = new PodcastModelHibImpl();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				podcastModel = new PodcastModelJDBCImpl();
+			}
+
+			modelCache.put("podcastModel", podcastModel);
+		}
+
+		return podcastModel;
+	}
+
+	public VoiceCommandModelInt getVoiceCommandModel() {
+
+		VoiceCommandModelInt voiceCommandModel = (VoiceCommandModelInt) modelCache.get("voiceCommandModel");
+
+		if (voiceCommandModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				voiceCommandModel = new VoiceCommandModelHibImpl();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				voiceCommandModel = new VoiceCommandModelJDBCImpl();
+			}
+
+			modelCache.put("voiceCommandModel", voiceCommandModel);
+		}
+
+		return voiceCommandModel;
+
+	}
+
+	public ResultModelInt getResultModel() {
+
+		ResultModelInt resultModel = (ResultModelInt) modelCache.get("resultModel");
+
+		if (resultModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				resultModel = new ResultModelHibImp();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				resultModel = new ResultModelHibImp();
+				// change if JDBC impl created
+			}
+
+			modelCache.put("resultModel", resultModel);
+		}
+
+		return resultModel;
+	}
+
+	public SmartLightModelInt getSmartLightModel() {
+
+		SmartLightModelInt smartLightModel = (SmartLightModelInt) modelCache.get("smartLightModel");
+
+		if (smartLightModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				smartLightModel = new SmartLightModelHibImpl();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				smartLightModel = new SmartLightModelJDBCImpl();
+			}
+
+			modelCache.put("smartLightModel", smartLightModel);
+		}
+
+		return smartLightModel;
+	}
+
+	public CustomerModelInt getCustomerModel() {
+
+		CustomerModelInt customerModel = (CustomerModelInt) modelCache.get("customerModel");
+
+		if (customerModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				customerModel = new CustomerModelHibImpl();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				customerModel = new CustomerModelHibImpl();
+			}
+
+			modelCache.put("customerModel", customerModel);
+		}
+
+		return customerModel;
+
+	}
+
+	public OrderModelInt getOrderModel() {
+
+		OrderModelInt orderModel = (OrderModelInt) modelCache.get("orderModel");
+
+		if (orderModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				orderModel = new OrderModelHibImpl();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				orderModel = new OrderModelJDBCImpl();
+			}
+
+			modelCache.put("orderModel", orderModel);
+		}
+
+		return orderModel;
+	}
+
+	public SalaryModelInt getSalaryModel() {
+
+		SalaryModelInt salaryModel = (SalaryModelInt) modelCache.get("salaryModel");
+
+		if (salaryModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				salaryModel = new SalaryModelHibImp();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				salaryModel = new SalaryModelHibImp(); // change if JDBC impl created
+			}
+
+			modelCache.put("salaryModel", salaryModel);
+		}
+
+		return salaryModel;
+	}
+
+	public VehicleModelInt getVehicleModel() {
+
+		VehicleModelInt vehicleModel = (VehicleModelInt) modelCache.get("vehicleModel");
+
+		if (vehicleModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				vehicleModel = new VehicleModelHibImpl();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				vehicleModel = new VehicleModelJDBCImpl(); // change if JDBC impl created
+			}
+
+			modelCache.put("vehicleModel", vehicleModel);
+		}
+
+		return vehicleModel;
+	}
+
+	public EventModelInt getEventModel() {
+
+		EventModelInt eventModel = (EventModelInt) modelCache.get("eventModel");
+
+		if (eventModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				eventModel = new EventModelHibImp();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				eventModel = new EventModelHibImp(); // change if JDBC impl created
+			}
+
+			modelCache.put("eventModel", eventModel);
+		}
+
+		return eventModel;
+
+	}
+
+	public ProductModelInt getProductModel() {
+
+		ProductModelInt productModel = (ProductModelInt) modelCache.get("productModel");
+
+		if (productModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				productModel = new ProductModelHibImpl();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				productModel = new ProductModelHibImpl();
+			}
+
+			modelCache.put("productModel", productModel);
+		}
+
+		return productModel;
+	}
+
+	public SmartParkingModelInt getSmartParkingModel() {
+
+		SmartParkingModelInt smartParkingModel = (SmartParkingModelInt) modelCache.get("smartParkingModel");
+
+		if (smartParkingModel == null) {
+
+			if ("Hibernate".equals(DATABASE)) {
+				smartParkingModel = new SmartParkingModelHibImpl();
+			}
+
+			if ("JDBC".equals(DATABASE)) {
+				smartParkingModel = new SmartParkingModelHibImpl();
+			}
+
+			modelCache.put("smartParkingModel", smartParkingModel);
+		}
+
+		return smartParkingModel;
+
 	}
 }

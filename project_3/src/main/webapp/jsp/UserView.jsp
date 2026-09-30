@@ -26,7 +26,7 @@ i.css {
 }
 
 .hm {
-	background-image: url('<%=ORSView.APP_CONTEXT%>/img/userRegistration.png');
+	background-image: url('<%=ORSView.APP_CONTEXT%>/img/user1.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
@@ -34,13 +34,7 @@ i.css {
 
 	/* background-size: 100%; */
 }
-.grad {
-	background-image: linear-gradient(to bottom right, #ffd3ac, #f79d65);
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
 </style>
-
 
 </head>
 <body class="hm">
@@ -58,7 +52,7 @@ i.css {
 				<!-- Grid column -->
 				<div class="col-md-4 mb-4"></div>
 				<div class="col-md-4 mb-4">
-					<div class="card input-group-addon grad">
+					<div class="card input-group-addon">
 						<div class="card-body">
 
 							<%
@@ -136,8 +130,9 @@ i.css {
 								</div>
 								<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("firstName", request)%></font></br>
 
-								<span class="pl-sm-5"><b>Last Name</b> <span
-									style="color: red;">*</span></span></br>
+								<span class="pl-sm-5"> <b>Last Name</b> <span
+									style="color: red;">*</span>
+								</span></br>
 								<div class="col-sm-12">
 									<div class="input-group">
 										<div class="input-group-prepend">
@@ -163,8 +158,9 @@ i.css {
 								<%
 									} else {
 								%>
-								<span class="pl-sm-5"><b>Password</b> <span
-									style="color: red;">*</span></span> </br>
+								<span class="pl-sm-5"> <b>Password</b> <span
+									style="color: red;">*</span>
+								</span> </br>
 								<div class="col-sm-12">
 									<div class="input-group">
 										<div class="input-group-prepend">
@@ -179,8 +175,9 @@ i.css {
 								</div>
 								<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("password", request)%></font></br>
 
-								<span class="pl-sm-5"><b>Confirm Password</b> <span
-									style="color: red;">*</span></span> </br>
+								<span class="pl-sm-5"> <b>Confirm Password</b> <span
+									style="color: red;">*</span>
+								</span> </br>
 								<div class="col-sm-12">
 									<div class="input-group">
 										<div class="input-group-prepend">
@@ -197,8 +194,10 @@ i.css {
 								<%
 									}
 								%>
-								<span class="pl-sm-5"><b>Email Id</b> <span
-									style="color: red;">*</span></span> </br>
+
+								<span class="pl-sm-5"> <b>Email Id</b> <span
+									style="color: red;">*</span>
+								</span> </br>
 								<div class="col-sm-12">
 									<div class="input-group">
 										<div class="input-group-prepend">
@@ -213,8 +212,9 @@ i.css {
 								</div>
 								<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("emailId", request)%></font></br>
 
-								<span class="pl-sm-5"><b>Mobile No</b> <span
-									style="color: red;">*</span></span> </br>
+								<span class="pl-sm-5"> <b>Mobile No</b> <span
+									style="color: red;">*</span>
+								</span> </br>
 								<div class="col-sm-12">
 									<div class="input-group">
 										<div class="input-group-prepend">
@@ -230,8 +230,9 @@ i.css {
 								</div>
 								<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("mobileNo", request)%></font></br>
 
-								<span class="pl-sm-5"><b>Role</b><span
-									style="color: red;">*</span></span></br>
+								<span class="pl-sm-5"> <b>Role</b> <span
+									style="color: red;">*</span>
+								</span></br>
 								<div class="col-sm-12">
 									<div class="input-group">
 										<div class="input-group-prepend">
@@ -244,9 +245,9 @@ i.css {
 								</div>
 								<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("role", request)%></font></br>
 
-								<span class="pl-sm-5"><b>Gender</b><span
-									style="color: red;">*</span></span> </br>
-
+								<span class="pl-sm-5"> <b>Gender</b> <span
+									style="color: red;">*</span>
+								</span> </br>
 								<div class="col-sm-12">
 									<div class="input-group">
 										<div class="input-group-prepend">
@@ -268,8 +269,9 @@ i.css {
 								</div>
 								<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("gender", request)%></font></br>
 
-								<span class="pl-sm-5"><b>DOB</b> <span
-									style="color: red;">*</span></span></br>
+								<span class="pl-sm-5"> <b>DOB</b> <span
+									style="color: red;">*</span>
+								</span></br>
 								<div class="col-sm-12">
 									<div class="input-group">
 										<div class="input-group-prepend">
@@ -279,7 +281,7 @@ i.css {
 										</div>
 										<input type="text" id="datepicker2" name="dob"
 											class="form-control" placeholder="Date Of Birth"
-											readonly="readonly" style="background-color: white;
+											readonly="readonly"
 											value="<%=DataUtility.getDateString(dto.getDob())%>">
 									</div>
 								</div>
@@ -295,7 +297,6 @@ i.css {
 										value="<%=UserCtl.OP_UPDATE%>"> <input type="submit"
 										name="operation" class="btn btn-warning btn-md"
 										style="font-size: 17px" value="<%=UserCtl.OP_CANCEL%>">
-
 								</div>
 								<%
 									} else {

@@ -16,13 +16,13 @@ import javax.servlet.http.HttpSession;
 import in.co.rays.project_3.util.ServletUtility;
 
 /**
- * Front Functionality ctl. to perform session checking and logging operation
- * @author Hemendra mewada
+ * Front Functionality ctl. to perform session checking and logging operation 
+ * It prevent any user to access application without login 
+ * @author Rajendra Singh
  *
  */
 @WebFilter(urlPatterns={"/ctl/*","/doc/*"})
 public class FrontController implements Filter {
-	
 	public void init(FilterConfig conf) throws ServletException {
 	}
 
@@ -31,9 +31,6 @@ public class FrontController implements Filter {
 		
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
-		
-		// save original controller path for error handling
-		request.setAttribute("ORIGINAL_CTL", request.getRequestURI());
 		
 		HttpSession session = request.getSession();
 		
@@ -52,8 +49,3 @@ public class FrontController implements Filter {
 	}
 
 }
-
-
-
-
-

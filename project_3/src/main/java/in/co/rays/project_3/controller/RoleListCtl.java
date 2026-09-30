@@ -22,7 +22,7 @@ import in.co.rays.project_3.util.ServletUtility;
 /**
  * role list functionality controller. to show list and search of role operation
  * 
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 @WebServlet(name = "RoleListCtl", urlPatterns = { "/ctl/RoleListCtl" })
@@ -30,27 +30,23 @@ public class RoleListCtl extends BaseCtl {
 	/**
 	 * 
 	 */
+	private static final long serialVersionUID = 1L;
 	private static Logger log = Logger.getLogger(RoleListCtl.class);
 
 	protected void preload(HttpServletRequest request) {
-
 		RoleModelInt model = ModelFactory.getInstance().getRoleModel();
-
 		try {
 			List list = model.list();
 			request.setAttribute("roleList", list);
 		} catch (Exception e) {
-
+			// TODO: handle exception
 		}
 	}
 
 	@Override
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-
 		RoleDTO dto = new RoleDTO();
-
 		dto.setId(DataUtility.getLong(request.getParameter("roleId")));
-
 		populateBean(dto, request);
 
 		return dto;
@@ -62,9 +58,7 @@ public class RoleListCtl extends BaseCtl {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		log.debug("RoleListCtl doGet Start");
-
 		List list = null;
 		List next = null;
 
@@ -72,16 +66,12 @@ public class RoleListCtl extends BaseCtl {
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
 
 		RoleDTO dto = (RoleDTO) populateDTO(request);
-
 		String op = DataUtility.getString(request.getParameter("operation"));
-
 		RoleModelInt model = ModelFactory.getInstance().getRoleModel();
-
 		try {
 			list = model.search(dto, pageNo, pageSize);
 			next = model.search(dto, pageNo + 1, pageSize);
 			ServletUtility.setList(list, request);
-
 			if (list == null || list.size() == 0) {
 				ServletUtility.setErrorMessage("No record found ", request);
 			}
@@ -109,24 +99,16 @@ public class RoleListCtl extends BaseCtl {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		log.debug("RoleListCtl doPost Start");
-
 		List list = null;
 		List next = null;
-
 		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
 		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
-
 		pageNo = (pageNo == 0) ? 1 : pageNo;
 		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
-
 		RoleDTO dto = (RoleDTO) populateDTO(request);
-
 		String op = DataUtility.getString(request.getParameter("operation"));
-
 		String[] ids = request.getParameterValues("ids");
-
 		RoleModelInt model = ModelFactory.getInstance().getRoleModel();
 
 		try {
@@ -163,16 +145,11 @@ public class RoleListCtl extends BaseCtl {
 					ServletUtility.setErrorMessage("Select at least one record", request);
 				}
 			}
-
 			dto = (RoleDTO) populateDTO(request);
 			list = model.search(dto, pageNo, pageSize);
-
 			ServletUtility.setDto(dto, request);
-
 			next = model.search(dto, pageNo + 1, pageSize);
-
 			ServletUtility.setList(list, request);
-
 			if (list == null || list.size() == 0) {
 				ServletUtility.setErrorMessage("No record found ", request);
 			}

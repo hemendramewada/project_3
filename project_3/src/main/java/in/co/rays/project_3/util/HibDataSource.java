@@ -10,23 +10,21 @@ import org.hibernate.cfg.Configuration;
  * Hibernate DataSource is provides the object of session factory and session
  * 
  * 
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 public class HibDataSource {
-	
-	
 	private static SessionFactory sessionFactory = null;
 
 	public static SessionFactory getSessionFactory() {
 
 		if (sessionFactory == null) {
 			ResourceBundle rb = ResourceBundle.getBundle("in.co.rays.project_3.bundle.system");
-
 			String jdbcUrl = System.getenv("DATABASE_URL");
 			if (jdbcUrl == null || jdbcUrl.trim().isEmpty()) {
 				jdbcUrl = rb.getString("url");
 			}
+			System.out.println("Hibernate using DB URL => " + jdbcUrl);
 
 			sessionFactory = new Configuration().configure().setProperty("hibernate.connection.url", jdbcUrl)
 					.buildSessionFactory();
@@ -47,4 +45,16 @@ public class HibDataSource {
 			session.close();
 		}
 	}
-}
+	public static synchronized void rebuildSessionFactory() {
+		try {
+			if (sessionFactory != null) {
+				sessionFactory.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sessionFactory = null;
+		}
+
+	}
+	}

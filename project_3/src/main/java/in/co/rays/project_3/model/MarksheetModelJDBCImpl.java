@@ -17,7 +17,7 @@ import in.co.rays.project_3.util.JDBCDataSource;
 
 /**
  * JDBC implements of Marksheet model
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 public class MarksheetModelJDBCImpl implements MarksheetModelInt {
@@ -291,7 +291,7 @@ public class MarksheetModelJDBCImpl implements MarksheetModelInt {
 		
 		ArrayList list = new ArrayList();
 		StringBuffer sql = new StringBuffer(
-				"select ID,ROLL_NO,NAME,PHYSICS,CHEMISTRY,MATHS, (PHYSICS+CHEMISTRY+MATHS)as Total from st_marksheet order by Total desc ");
+				"select ID,ROLL_NO,NAME,PHYSICS,CHEMISTRY,MATHS (PHYSICS+CHEMISTRY+MATHS)as Total from st_marksheet order by Total desc ");
 		if(pageSize>0){
 			pageNo=(pageNo-1)*pageSize;
 			sql.append(" limit "+pageNo+","+pageSize);

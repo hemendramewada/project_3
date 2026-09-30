@@ -27,12 +27,11 @@
 }
 
 .p4 {
-	background-image: url('<%=ORSView.APP_CONTEXT%>/img/list.png');
+	background-image: url('<%=ORSView.APP_CONTEXT%>/img/list2.jpg');
 	background-repeat: no-repeat;
-	background-attachment: fixed; 
+	background-attachment: fixed;
 	background-size: cover;
 	padding-top: 85px;
-	
 }
 </style>
 </head>
@@ -46,15 +45,17 @@
 
 
 			<div align="center">
-				<h1 class="text-light font-weight-bold pt-3"><font color="black">Marksheet Merit
-					List</h1></font>
+				<h1 class="text-light font-weight-bold pt-3">
+					<font color="black">Marksheet Merit List
+				</h1>
+				</font>
 			</div>
 
 			<div class="row">
 				<div class="col-md-4"></div>
 
 				<%
-					if (!ServletUtility.getSuccessMessage(request).equals("")) {
+				if (!ServletUtility.getSuccessMessage(request).equals("")) {
 				%>
 
 				<div class="col-md-4 alert alert-success alert-dismissible">
@@ -64,7 +65,7 @@
 					</h4>
 				</div>
 				<%
-					}
+				}
 				%>
 
 				<div class="col-md-4"></div>
@@ -73,7 +74,7 @@
 				<div class="col-md-4"></div>
 
 				<%
-					if (!ServletUtility.getErrorMessage(request).equals("")) {
+				if (!ServletUtility.getErrorMessage(request).equals("")) {
 				%>
 				<div class=" col-md-4 alert alert-danger alert-dismissible">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -82,7 +83,7 @@
 					</h4>
 				</div>
 				<%
-					}
+				}
 				%>
 				<div class="col-md-4"></div>
 			</div>
@@ -92,13 +93,13 @@
 
 
 			<%
-				int pageNo = ServletUtility.getPageNo(request);
-				int pageSize = ServletUtility.getPageSize(request);
-				int index = ((pageNo - 1) * pageSize) + 1;
+			int pageNo = ServletUtility.getPageNo(request);
+			int pageSize = ServletUtility.getPageSize(request);
+			int index = ((pageNo - 1) * pageSize) + 1;
 
-				List list = ServletUtility.getList(request);
-				Iterator<MarksheetDTO> it = list.iterator();
-				if (list.size() != 0) {
+			List list = ServletUtility.getList(request);
+			Iterator<MarksheetDTO> it = list.iterator();
+			if (list.size() != 0) {
 			%>
 
 
@@ -106,14 +107,15 @@
 			</br>
 			<div style="margin-left: 87%;" class="pb-2">
 
-				<a href="/project_3/ctl/JasperCtl" class="btn btn-lg btn-warning "
-					role="button" target="blank"> <span class="fa fa-print mr-1"></span>Print
+				<a href="<%=ORSView.JASPER_CTL%>" class="btn btn-lg btn-warning"
+					target="blank"> <span class="fa fa-print mr-1"></span> Print
 				</a>
+
 			</div>
 			<div style="margin-bottom: 20px;" class="table-responsive">
-				<table class="table table-striped  table-hover">
+				<table class="table table-dark  table-hover">
 					<thead>
-						<tr style="background-color: #f79d65; font-size: 18px;">
+						<tr style="background-color: #8C8C8C;">
 
 							<th class="text">S.NO</th>
 
@@ -127,12 +129,12 @@
 						</tr>
 					</thead>
 					<%
-						while (it.hasNext()) {
-								dto = it.next();
+					while (it.hasNext()) {
+						dto = it.next();
 					%>
 
 					<tbody>
-						<tr style="font-weight: bold;">
+						<tr>
 
 							<td align="center"><%=index++%></td>
 							<td align="center"><%=dto.getRollNo()%></td>
@@ -142,17 +144,17 @@
 							<td align="center"><%=dto.getMaths()%></td>
 							<td align="center">
 								<%
-									int total = (dto.getChemistry() + dto.getPhysics() + dto.getMaths());
+								int total = (dto.getChemistry() + dto.getPhysics() + dto.getMaths());
 								%><%=total%></td>
 							<td align="center">
 								<%
-									float percentage = ((total * 100) / 300);
+								float percentage = ((total * 100) / 300);
 								%> <%=percentage%></td>
 
 						</tr>
 					</tbody>
 					<%
-						}
+					}
 					%>
 				</table>
 			</div>
@@ -164,7 +166,7 @@
 
 
 			<%
-				}
+			}
 			%>
 
 			<input type="hidden" name="pageNo" value="<%=pageNo%>"> <input

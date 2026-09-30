@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="in.co.rays.project_3.dto">
+
+	<class name="PlacementDTO" table="ST_PLACEMENT">
+
+		<id name="id" type="java.lang.Long">
+			<column name="ID"/>
+			<generator class="identity"/>
+		</id>
+
+		<property name="placementCode" type="java.lang.String">
+			<column name="PLACEMENT_CODE" unique="true" not-null="true"/>
+		</property>
+
+		<property name="studentName" type="java.lang.String">
+			<column name="STUDENT_NAME"/>
+		</property>
+
+		<property name="companyName" type="java.lang.String">
+			<column name="COMPANY_NAME"/>
+		</property>
+
+		<property name="placementStatus" type="java.lang.String">
+			<column name="PLACEMENT_STATUS"/>
+		</property>
+
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="in.co.rays.project_3.dto">
+
+	<class name="SessionDTO" table="ST_SESSION">
+
+		<id name="id" type="java.lang.Long">
+			<column name="ID"/>
+			<generator class="identity"/>
+		</id>
+
+		<property name="sessionToken" type="java.lang.String">
+			<column name="SESSION_TOKEN" unique="true" not-null="true"/>
+		</property>
+
+		<property name="userName" type="java.lang.String">
+			<column name="USER_NAME"/>
+		</property>
+
+		<property name="loginTime" type="java.time.LocalDateTime">
+			<column name="LOGIN_TIME"/>
+		</property>
+
+		<property name="logoutTime" type="java.time.LocalDateTime">
+			<column name="LOGOUT_TIME"/>
+		</property>
+
+		<property name="sessionStatus" type="java.lang.String">
+			<column name="SESSION_STATUS"/>
+		</property>
+
+	</class>
+
+</hibernate-mapping>

@@ -17,7 +17,7 @@ import in.co.rays.project_3.util.ServletUtility;
 /**
  * Base controller class of project. It contain (1) Generic operations (2)
  * Generic constants (3) Generic work flow
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 public abstract class BaseCtl extends HttpServlet{
@@ -71,7 +71,7 @@ public abstract class BaseCtl extends HttpServlet{
 
     protected BaseDTO populateBean(BaseDTO dto,HttpServletRequest request){
 
-    	System.out.println("populateDTO method in BaseCtl");
+    	
 
     	String createdBy=request.getParameter("createdBy");
     	String modifiedBy=null;
@@ -126,6 +126,7 @@ public abstract class BaseCtl extends HttpServlet{
 
         // Check if operation is not DELETE, VIEW, CANCEL, RESET and NULL then
         // perform input data validation
+        System.out.println(op);
 
         if (DataValidator.isNotNull(op) && !OP_CANCEL.equalsIgnoreCase(op) && !OP_VIEW.equalsIgnoreCase(op)
 				&& !OP_DELETE.equalsIgnoreCase(op)&& !OP_RESET.equalsIgnoreCase(op)) {

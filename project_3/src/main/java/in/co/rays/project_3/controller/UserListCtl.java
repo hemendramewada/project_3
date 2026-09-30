@@ -24,18 +24,17 @@ import in.co.rays.project_3.util.ServletUtility;
 /**
  * User List functionality controller.to perform Search and List operation.
  * 
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 @WebServlet(name = "UserListCtl", urlPatterns = { "/ctl/UserListCtl" })
 public class UserListCtl extends BaseCtl {
 
+	private static final long serialVersionUID = 1L;
 	private static Logger log = Logger.getLogger(UserListCtl.class);
 
 	protected void preload(HttpServletRequest request) {
-
 		RoleModelInt model = ModelFactory.getInstance().getRoleModel();
-
 		try {
 			List list = model.list();
 			request.setAttribute("roleList", list);
@@ -47,7 +46,6 @@ public class UserListCtl extends BaseCtl {
 
 	@Override
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-
 		UserDTO dto = new UserDTO();
 
 		dto.setFirstName(DataUtility.getString(request.getParameter("firstName")));
@@ -63,33 +61,25 @@ public class UserListCtl extends BaseCtl {
 	/**
 	 * Contains Display logics
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request,HttpServletResponse response)
 			throws ServletException, IOException {
-
 		log.debug("UserListCtl doGet Start");
-
 		List list;
 		List next;
-
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
-
 		UserDTO dto = (UserDTO) populateDTO(request);
 		// get the selected checkbox ids array for delete list
-
 		UserModelInt model = ModelFactory.getInstance().getUserModel();
 		try {
-
 			list = model.search(dto, pageNo, pageSize);
 
-			ArrayList<UserDTO> a = (ArrayList<UserDTO>) list;
+			/*
+			 * ArrayList<UserDTO> a = (ArrayList<UserDTO>) list;
+			 * 
+			 * for (UserDTO udto1 : a) { System.out.println(udto1.getRoleId()); }
+			 */
 
-			for (UserDTO udto1 : a) {
-				System.out.println(udto1.getRoleId() + "[[[[[[[[[[[--------------------");
-			}
-
-			System.out.println(list + "----------------------------------------------------------");
-			System.out.println(list.indexOf(3));
 			next = model.search(dto, pageNo + 1, pageSize);
 			ServletUtility.setList(list, request);
 			if (list == null || list.size() == 0) {
@@ -110,7 +100,7 @@ public class UserListCtl extends BaseCtl {
 			ServletUtility.handleException(e, request, response);
 			return;
 		} catch (Exception e) {
-
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		log.debug("UserListCtl doPOst End");
@@ -122,25 +112,19 @@ public class UserListCtl extends BaseCtl {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		log.debug("UserListCtl doPost Start");
-
 		List list = null;
 		List next = null;
-
 		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
 		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
 
 		pageNo = (pageNo == 0) ? 1 : pageNo;
 		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
-
 		UserDTO dto = (UserDTO) populateDTO(request);
-
 		String op = DataUtility.getString(request.getParameter("operation"));
 
 // get the selected checkbox ids array for delete list
 		String[] ids = request.getParameterValues("ids");
-
 		UserModelInt model = ModelFactory.getInstance().getUserModel();
 		try {
 
@@ -179,7 +163,6 @@ public class UserListCtl extends BaseCtl {
 				return;
 			}
 			dto = (UserDTO) populateDTO(request);
-			System.out.println("y yyyyyyyyyy" + dto.getRoleId());
 
 			list = model.search(dto, pageNo, pageSize);
 
@@ -188,7 +171,6 @@ public class UserListCtl extends BaseCtl {
 
 			ServletUtility.setList(list, request);
 			ServletUtility.setList(list, request);
-
 			if (list == null || list.size() == 0) {
 				if (!OP_DELETE.equalsIgnoreCase(op)) {
 					ServletUtility.setErrorMessage("No record found ", request);

@@ -18,7 +18,7 @@
 }
 
 .hm {
-	background-image: url('<%=ORSView.APP_CONTEXT%>/img/addMarksheet.png');
+	background-image: url('<%=ORSView.APP_CONTEXT%>/img/user1.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed; 
 	background-size: cover;
@@ -28,9 +28,7 @@
 }
 
 .grad {
-	background-image: linear-gradient(to bottom right, #ffd3ac, #f79d65);
-	background-repeat: no-repeat;
-	background-size: 100%;
+	background-color: linear-gradient(to bottom right, blue, white);
 }
 
 .input-group-addon {
@@ -66,8 +64,7 @@ i.css {
 							<%
 								long id = DataUtility.getLong(request.getParameter("id"));
 
-							if (dto.getId() != null && id > 0)
- {
+								if (dto.getId() != null) {
 							%>
 							<h3 class="text-center default-text text-primary">Update
 								Marksheet</h3>
@@ -212,7 +209,7 @@ i.css {
 							</div>
 							</br>
 							<%
-								if (dto!=null  && id>0) {
+								if (dto.getId()!=null) {
 							%>
 
 							<div class="text-center">

@@ -24,8 +24,7 @@ import in.co.rays.project_3.util.ServletUtility;
 /**
  * Myprofile functionality controller.to perform update profile operation and
  * show profile
- * 
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 @WebServlet(name = "MyProfileCtl", urlPatterns = { "/ctl/MyProfileCtl" })
@@ -104,7 +103,6 @@ public class MyProfileCtl extends BaseCtl {
 
 	@Override
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-
 		log.debug("MyProfileCtl Method populatebean Started");
 
 		UserDTO dto = new UserDTO();
@@ -122,7 +120,8 @@ public class MyProfileCtl extends BaseCtl {
 		dto.setGender(DataUtility.getString(request.getParameter("gender")));
 
 		dto.setDob(DataUtility.getDate(request.getParameter("dob")));
-		populateBean(dto, request);
+		populateBean(dto,request);
+		
 
 		return dto;
 	}
@@ -132,9 +131,7 @@ public class MyProfileCtl extends BaseCtl {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession session = request.getSession(true);
-
 		log.debug("MyprofileCtl Method doGet Started");
 
 		UserDTO userdto = (UserDTO) session.getAttribute("user");
@@ -142,10 +139,8 @@ public class MyProfileCtl extends BaseCtl {
 		String op = DataUtility.getString(request.getParameter("operation"));
 
 		// get model
-		UserModelInt model = ModelFactory.getInstance().getUserModel();
-
+		UserModelInt model =ModelFactory.getInstance().getUserModel() ;
 		if (id > 0 || op != null) {
-			System.out.println("in id > 0  condition");
 			UserDTO dto;
 			try {
 				dto = model.findByPK(id);
@@ -166,15 +161,11 @@ public class MyProfileCtl extends BaseCtl {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession session = request.getSession(true);
-
 		log.debug("MyprofileCtl Method doPost Started");
 
 		UserDTO Userdto = (UserDTO) session.getAttribute("user");
-
 		long id = Userdto.getId();
-
 		String op = DataUtility.getString(request.getParameter("operation"));
 
 		// get model
@@ -195,7 +186,6 @@ public class MyProfileCtl extends BaseCtl {
 				}
 				ServletUtility.setDto(dto, request);
 				ServletUtility.setSuccessMessage("Profile has been updated Successfully. ", request);
-
 			} catch (ApplicationException e) {
 				log.error(e);
 				ServletUtility.handleException(e, request, response);
@@ -222,3 +212,4 @@ public class MyProfileCtl extends BaseCtl {
 	}
 
 }
+

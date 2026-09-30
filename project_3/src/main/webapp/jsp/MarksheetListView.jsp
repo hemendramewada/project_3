@@ -22,7 +22,7 @@
 }
 
 .hm {
-	background-image: url('<%=ORSView.APP_CONTEXT%>/img/list.png');
+	background-image: url('<%=ORSView.APP_CONTEXT%>/img/list2.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
@@ -123,9 +123,9 @@
 
 			</br>
 			<div style="margin-bottom: 20px;" class="table-responsive">
-				<table class="table  table-striped table-bordered table-hover">
+				<table class="table  table-dark table-bordered table-hover">
 					<thead>
-						<tr align="center" style="background-color: #f79d65; font-size: 18px;">
+						<tr align="center" style="background-color: #8C8C8C;">
 
 							<th width="10%"><input type="checkbox" id="select_all"
 								name="Select" class="text"> Select All</th>
@@ -144,7 +144,7 @@
 					%>
 
 					<tbody>
-						<tr align="center" style="font-weight: bold;">
+						<tr align="center">
 							<td><input type="checkbox" class="checkbox" name="ids"
 								value="<%=dto.getId()%>"></td>
 							<td><%=index++%></td>

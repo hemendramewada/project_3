@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="in.co.rays.project_3.dto">
+
+    <class name="ListenerDTO" table="ST_LISTENER">
+
+      
+        <id name="id" type="java.lang.Long">
+            <column name="ID"/>
+            <generator class="identity"/>
+        </id>
+
+        <property name="listenerCode" type="java.lang.String">
+            <column name="LISTENER_CODE"/>
+        </property>
+
+        <property name="queueName" type="java.lang.String">
+            <column name="QUEUE_NAME"/>
+        </property>
+
+        <property name="consumerGroup" type="java.lang.String">
+            <column name="CONSUMER_GROUP"/>
+        </property>
+
+        <property name="status" type="java.lang.String">
+            <column name="STATUS"/>
+        </property>
+
+    </class>
+
+</hibernate-mapping>

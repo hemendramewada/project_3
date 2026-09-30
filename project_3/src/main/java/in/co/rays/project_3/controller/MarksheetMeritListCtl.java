@@ -22,20 +22,16 @@ import in.co.rays.project_3.util.ServletUtility;
 /**
  * marksheetmerit list functionlity controller to show merit list student
  * 
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 @WebServlet(name = "MarksheetMeritListCtl", urlPatterns = { "/ctl/MarksheetMeritListCtl" })
 public class MarksheetMeritListCtl extends BaseCtl {
-
 	private static Logger log = Logger.getLogger(MarksheetMeritListCtl.class);
 
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-
 		log.debug("Marksheet merit list populate bean start");
-
 		MarksheetDTO dto = new MarksheetDTO();
-
 		return dto;
 
 	}
@@ -46,25 +42,18 @@ public class MarksheetMeritListCtl extends BaseCtl {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
 		log.debug("Marksheet merit list do get  start");
 
 		List list;
 		int pageNo = 1;
-
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
 		String op = DataUtility.getString(request.getParameter("operation"));
 		long id = DataUtility.getLong(request.getParameter("id"));
-
 		MarksheetDTO dto = (MarksheetDTO) populateDTO(request);
-
 		MarksheetModelInt model = ModelFactory.getInstance().getMarksheetModel();
-
 		try {
 			list = model.getMeritList(pageNo, pageSize);
-
 			ServletUtility.setList(list, request);
-
 			if (list == null || list.size() == 0) {
 				ServletUtility.setErrorMessage("No record found", request);
 			}
@@ -72,7 +61,6 @@ public class MarksheetMeritListCtl extends BaseCtl {
 			ServletUtility.setPageNo(pageNo, request);
 			ServletUtility.setPageSize(pageSize, request);
 			ServletUtility.forward(getView(), request, response);
-
 		} catch (Exception e) {
 			log.error(e);
 			ServletUtility.handleException(e, request, response);
@@ -88,22 +76,15 @@ public class MarksheetMeritListCtl extends BaseCtl {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
 		log.debug("Marksheet merit list dopost  start");
-
 		List list;
-
 		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
 		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
 		pageNo = (pageNo == 0) ? 1 : pageNo;
 		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
-
 		String op = DataUtility.getString(request.getParameter("operation"));
-
 		long id = DataUtility.getLong(request.getParameter("id"));
-
 		MarksheetModelInt model = ModelFactory.getInstance().getMarksheetModel();
-
 		MarksheetDTO dto = (MarksheetDTO) populateDTO(request);
 		try {
 			if (OP_BACK.equalsIgnoreCase(op)) {
@@ -112,7 +93,6 @@ public class MarksheetMeritListCtl extends BaseCtl {
 			}
 			list = model.getMeritList(pageNo, pageSize);
 			ServletUtility.setList(list, request);
-
 			if (list == null || list.size() == 0) {
 				ServletUtility.setErrorMessage("No record found", request);
 			}
@@ -120,7 +100,6 @@ public class MarksheetMeritListCtl extends BaseCtl {
 			ServletUtility.setPageNo(pageNo, request);
 			ServletUtility.setPageSize(pageSize, request);
 			ServletUtility.forward(ORSView.MARKSHEET_MERIT_LIST_VIEW, request, response);
-
 		} catch (ApplicationException e) {
 			log.error(e);
 			ServletUtility.handleException(e, request, response);
@@ -128,10 +107,9 @@ public class MarksheetMeritListCtl extends BaseCtl {
 		}
 		log.debug("Marksheet merit list dopost end");
 	}
-
 	@Override
 	protected String getView() {
-
+		// TODO Auto-generated method stub
 		return ORSView.MARKSHEET_MERIT_LIST_VIEW;
 	}
 

@@ -26,38 +26,29 @@ import in.co.rays.project_3.util.ServletUtility;
  * Timetable functionality controller. to perform add,delete and update
  * operation
  * 
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
-@WebServlet(urlPatterns = { "/ctl/TimeTableCtl" })
-public class TimeTableCtl extends BaseCtl {
-
+@WebServlet(urlPatterns={"/ctl/TimeTableCtl"})
+public class TimeTableCtl extends BaseCtl{
 	private static Logger log = Logger.getLogger(TimeTableCtl.class);
 
 	protected void preload(HttpServletRequest request) {
-
 		CourseModelInt model = ModelFactory.getInstance().getCourseModel();
-
-		SubjectModelInt model1 = ModelFactory.getInstance().getSubjectModel();
-
+		SubjectModelInt  model1 = ModelFactory.getInstance().getSubjectModel();
 		try {
 			List l = model.list();
 			List l1 = model1.list();
-
 			request.setAttribute("courseList", l);
 			request.setAttribute("subjectList", l1);
-
-		} catch (ApplicationException e) {
+		} catch (Exception e) {
 			log.error(e);
 		}
 	}
 
 	protected boolean validate(HttpServletRequest request) {
-
 		log.debug("time table validate start");
-
 		boolean pass = true;
-
 		String examDate = request.getParameter("examDate");
 		if (DataValidator.isNull(request.getParameter("courseId"))) {
 			request.setAttribute("courseId", PropertyReader.getValue("error.require", "course Name"));
@@ -67,6 +58,7 @@ public class TimeTableCtl extends BaseCtl {
 			request.setAttribute("subjectId", PropertyReader.getValue("error.require", "subject Name"));
 			pass = false;
 		}
+		
 
 		if (DataValidator.isNull(request.getParameter("semesterId"))) {
 			request.setAttribute("semesterId", PropertyReader.getValue("error.require", "semester"));
@@ -85,25 +77,23 @@ public class TimeTableCtl extends BaseCtl {
 			pass = false;
 		}
 		log.debug("time table validate end");
-
+		System.out.println("kjkj>>>>" + pass);
 		return pass;
 	}
 
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-
 		log.debug("time table populate start");
-
 		TimetableDTO dto = new TimetableDTO();
-
 		dto.setId(DataUtility.getLong(request.getParameter("id")));
 		dto.setCourseId(DataUtility.getLong(request.getParameter("courseId")));
 		dto.setSemester(DataUtility.getString(request.getParameter("semesterId")));
 		dto.setSubId(DataUtility.getLong(request.getParameter("subjectId")));
 		dto.setExamDate(DataUtility.getDate(request.getParameter("examDate")));
 		dto.setExamTime(DataUtility.getString(request.getParameter("examId")));
-		populateBean(dto, request);
+		populateBean(dto,request);
 		log.debug("time table populate end");
-
+		System.out.println("<<<>>>>>>++.." + dto);
+		
 		return dto;
 	}
 
@@ -112,14 +102,10 @@ public class TimeTableCtl extends BaseCtl {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
 		log.debug("time table do get start");
-
 		String op = DataUtility.getString(request.getParameter("operation"));
 		long id = DataUtility.getLong(request.getParameter("id"));
-
-		TimetableModelInt model = ModelFactory.getInstance().getTimetableModel();
-
+		TimetableModelInt model =ModelFactory.getInstance().getTimetableModel() ;
 		if (id > 0 || op != null) {
 			TimetableDTO dto;
 			try {
@@ -140,17 +126,12 @@ public class TimeTableCtl extends BaseCtl {
 	/**
 	 * Submit logic inside it
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		System.out.println("method post..............");
 		log.debug("time table dopost start");
-
 		String op = DataUtility.getString(request.getParameter("operation"));
-
 		long id = DataUtility.getLong(request.getParameter("id"));
-
 		TimetableModelInt model = ModelFactory.getInstance().getTimetableModel();
-
 		if (OP_SAVE.equalsIgnoreCase(op) || OP_UPDATE.equalsIgnoreCase(op)) {
 			TimetableDTO dto = (TimetableDTO) populateDTO(request);
 			TimetableDTO dto1 = null;
@@ -159,9 +140,9 @@ public class TimeTableCtl extends BaseCtl {
 			try {
 				if (id > 0) {
 					dto.setId(id);
-					model.update(dto);
+					 model.update(dto);
 					ServletUtility.setDto(dto, request);
-
+					
 					ServletUtility.setSuccessMessage("Data is successfully Update", request);
 				} else {
 					try {
@@ -181,11 +162,12 @@ public class TimeTableCtl extends BaseCtl {
 
 						}
 					} catch (Exception e) {
-
+						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
 				}
+				//ServletUtility.setBean(bean, request);
 
 			} catch (Exception e) {
 				ServletUtility.setDto(dto, request);
@@ -219,7 +201,7 @@ public class TimeTableCtl extends BaseCtl {
 
 	@Override
 	protected String getView() {
-
+		// TODO Auto-generated method stub
 		return ORSView.TIMETABLE_VIEW;
 	}
 

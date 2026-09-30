@@ -13,7 +13,7 @@ import in.co.rays.project_3.dto.DropdownList;
 
 /**
  * HTML Utility class to produce HTML contents like Dropdown List.
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 public class HTMLUtility {
@@ -123,11 +123,7 @@ public class HTMLUtility {
     }
 */
 	public static String getList(String name, String selectedVal, List list) {
-		
-		if (list == null) {
-	        list = new java.util.ArrayList();
-	    }
-		
+
         Collections.sort(list);       
         StringBuffer sb = new StringBuffer("<select class='form-control' style='border: 2px solid #8080803b;' class='form-control' name='" + name + "'>");
 

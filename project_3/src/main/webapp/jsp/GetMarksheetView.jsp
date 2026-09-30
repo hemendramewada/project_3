@@ -29,7 +29,7 @@
 }
 
 body {
-	background-image: url('<%=ORSView.APP_CONTEXT%>/img/getMarksheet.png');
+	background-image: url('<%=ORSView.APP_CONTEXT%>/img/marks.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed; 
 	background-size: cover;

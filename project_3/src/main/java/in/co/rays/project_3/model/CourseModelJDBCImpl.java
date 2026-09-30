@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.exception.JDBCConnectionException;
 
 import in.co.rays.project_3.dto.CourseDTO;
 import in.co.rays.project_3.exception.ApplicationException;
@@ -17,7 +16,7 @@ import in.co.rays.project_3.util.JDBCDataSource;
 
 /**
  * JDBC implements of Course model
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 public class CourseModelJDBCImpl implements CourseModelInt {
@@ -221,8 +220,6 @@ public class CourseModelJDBCImpl implements CourseModelInt {
 				list.add(dto);
 			}
 			rs.close();
-		} catch (JDBCConnectionException e) {
-			throw e;
 		} catch (Exception e) {
 			log.error("Database Exception..", e);
 			throw new ApplicationException("Exception : Exception in getting list of Role");

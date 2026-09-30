@@ -25,18 +25,15 @@ import in.co.rays.project_3.util.ServletUtility;
 /**
  * User registration functionality Controller. Performs operation for User
  * 
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 @WebServlet(urlPatterns = { "/UserRegistrationCtl" })
 public class UserRegistrationCtl extends BaseCtl {
-
 	public static final String OP_SIGN_UP = "SignUp";
 
 	protected boolean validate(HttpServletRequest request) {
-
 		boolean pass = true;
-
 		if (DataValidator.isNull(request.getParameter("firstName"))) {
 			request.setAttribute("firstName", PropertyReader.getValue("error.require", "first Name"));
 			pass = false;
@@ -48,7 +45,7 @@ public class UserRegistrationCtl extends BaseCtl {
 		if (DataValidator.isNull(request.getParameter("lastName"))) {
 			request.setAttribute("lastName", PropertyReader.getValue("error.require", "last Name"));
 			pass = false;
-		} else if (!DataValidator.isName(request.getParameter("lastName"))) {
+		} else if (!DataValidator.isName(request.getParameter("firstName"))) {
 			request.setAttribute("lastName", "Last name contain Alphabets only");
 			pass = false;
 
@@ -111,6 +108,8 @@ public class UserRegistrationCtl extends BaseCtl {
 	@Override
 	protected BaseDTO populateDTO(HttpServletRequest request) {
 
+//		log.debug("UserRegistrationCtl Method populatedto Started");
+
 		UserDTO dto = new UserDTO();
 
 		dto.setId(DataUtility.getLong(request.getParameter("id")));
@@ -131,10 +130,12 @@ public class UserRegistrationCtl extends BaseCtl {
 		dto.setMobileNo(DataUtility.getString(request.getParameter("mobileNo")));
 
 		dto.setDob(DataUtility.getDate(request.getParameter("dob")));
-		
-		return populateBean(dto, request);
 
-		
+		/*
+		 * log.debug("UserRegistrationCtl Method populatedto Ended");
+		 */
+
+		return dto;
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -146,13 +147,9 @@ public class UserRegistrationCtl extends BaseCtl {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
 		String op = request.getParameter("operation");
-
 		long id = DataUtility.getLong(request.getParameter("id"));
-
 		UserModelInt userModel = ModelFactory.getInstance().getUserModel();
-
 		if (OP_SIGN_UP.equalsIgnoreCase(op)) {
 			UserDTO dto = (UserDTO) populateDTO(request);
 			try {
@@ -160,12 +157,10 @@ public class UserRegistrationCtl extends BaseCtl {
 				long pk = userModel.registerUser(dto);
 				ServletUtility.setDto(dto, request);
 				ServletUtility.setSuccessMessage("Registration successfully", request);
-
 			} catch (DuplicateRecordException e) {
 				ServletUtility.setDto(dto, request);
 				ServletUtility.setErrorMessage("Login id already exists", request);
 				ServletUtility.forward(getView(), request, response);
-
 			} catch (ApplicationException e) {
 
 				ServletUtility.handleException(e, request, response);
@@ -183,7 +178,7 @@ public class UserRegistrationCtl extends BaseCtl {
 
 	@Override
 	protected String getView() {
-
+		// TODO Auto-generated method stub
 		return ORSView.USER_REGISTRATION_VIEW;
 	}
 

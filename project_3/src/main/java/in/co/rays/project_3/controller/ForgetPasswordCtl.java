@@ -23,7 +23,7 @@ import in.co.rays.project_3.util.ServletUtility;
 /**
  * forget password ctl.To perform password send in email
  * 
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 @WebServlet(urlPatterns = { "/ForgetPasswordCtl" })
@@ -31,13 +31,11 @@ public class ForgetPasswordCtl extends BaseCtl {
 	/**
 	 * 
 	 */
-
+	private static final long serialVersionUID = 1L;
 	private static Logger log = Logger.getLogger(ForgetPasswordCtl.class);
 
 	protected boolean validate(HttpServletRequest request) {
-
 		boolean pass = true;
-
 		if (DataValidator.isNull(request.getParameter("login"))) {
 			request.setAttribute("login", PropertyReader.getValue("error.require", "Email Id"));
 			pass = false;
@@ -50,12 +48,9 @@ public class ForgetPasswordCtl extends BaseCtl {
 	}
 
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-
 		UserDTO dto = new UserDTO();
-
 		dto.setLogin(DataUtility.getString(request.getParameter("login")));
 		populateBean(dto, request);
-		System.out.println("Hello");
 
 		return dto;
 
@@ -63,7 +58,6 @@ public class ForgetPasswordCtl extends BaseCtl {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
 		log.debug("do get method started");
 
 		ServletUtility.forward(getView(), request, response);
@@ -71,15 +65,10 @@ public class ForgetPasswordCtl extends BaseCtl {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
 		log.debug("do get method started");
-
 		String op = request.getParameter("operation");
-
 		UserModelInt userModel = ModelFactory.getInstance().getUserModel();
-
 		UserDTO dto = (UserDTO) populateDTO(request);
-
 		if (OP_GO.equalsIgnoreCase(op)) {
 			try {
 				userModel.forgetPassword(dto.getLogin());
@@ -103,7 +92,7 @@ public class ForgetPasswordCtl extends BaseCtl {
 
 	@Override
 	protected String getView() {
-
+		// TODO Auto-generated method stub
 		return ORSView.FORGET_PASSWORD_VIEW;
 	}
 

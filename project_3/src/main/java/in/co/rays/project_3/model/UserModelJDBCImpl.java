@@ -22,7 +22,7 @@ import in.co.rays.project_3.util.JDBCDataSource;
 
 /**
  * JDBC implements of User model
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 public class UserModelJDBCImpl implements UserModelInt {
@@ -34,7 +34,7 @@ public class UserModelJDBCImpl implements UserModelInt {
 		long pk = 0;
 		try {
 			con = JDBCDataSource.getConnection();
-			PreparedStatement ps = con.prepareStatement("select max(id) from ST_USER");
+			PreparedStatement ps = con.prepareStatement("select max(id) from st_user");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				pk = rs.getLong(1);
@@ -68,7 +68,7 @@ public class UserModelJDBCImpl implements UserModelInt {
 			pk = nextPK();
 			System.out.println("insert data");
 			PreparedStatement ps = con
-					.prepareStatement("insert into ST_USERdto values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+					.prepareStatement("insert into st_userdto values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			ps.setLong(1, pk);
 			ps.setString(2, dto.getFirstName());
 			ps.setString(3, dto.getLastName());
@@ -117,7 +117,7 @@ public class UserModelJDBCImpl implements UserModelInt {
 		try {
 			con = JDBCDataSource.getConnection();
 			con.setAutoCommit(false);
-			PreparedStatement ps = con.prepareStatement("delete from ST_USER where id=?");
+			PreparedStatement ps = con.prepareStatement("delete from st_user where id=?");
 			ps.setLong(1, dto.getId());
 			ps.executeUpdate();
 			con.commit();
@@ -149,7 +149,7 @@ public class UserModelJDBCImpl implements UserModelInt {
 		try {
 			con = JDBCDataSource.getConnection();
 			ps = con.prepareStatement(
-					"update ST_USER set FIRST_NAME=?,LAST_NAME=?,LOGIN=?,PASSWORD=?,CONFIRMPASSWORD=?,DOB=?,MOBILE_NO=?,ROLE_ID=?,UNSUCCESSFUL_LOGIN=?,GENDER=?,LAST_LOGIN=?,REGISTERED_IP=?,LAST_LOGIN_IP=?,CREATED_BY=?,MODIFIED_BY=?,CREATED_DATETIME=?,MODIFIED_DATETIME=? WHERE ID=?");
+					"update st_user set FIRST_NAME=?,LAST_NAME=?,LOGIN=?,PASSWORD=?,CONFIRMPASSWORD=?,DOB=?,MOBILE_NO=?,ROLE_ID=?,UNSUCCESSFUL_LOGIN=?,GENDER=?,LAST_LOGIN=?,REGISTERED_IP=?,LAST_LOGIN_IP=?,CREATED_BY=?,MODIFIED_BY=?,CREATED_DATETIME=?,MODIFIED_DATETIME=? WHERE ID=?");
 
 			ps.setString(1, dto.getFirstName());
 			ps.setString(2, dto.getLastName());
@@ -194,7 +194,7 @@ public class UserModelJDBCImpl implements UserModelInt {
 		UserDTO dto = null;
 		try {
 			con = JDBCDataSource.getConnection();
-			ps = con.prepareStatement("select * from ST_USER where id=?");
+			ps = con.prepareStatement("select * from st_user where id=?");
 			ps.setLong(1, pk);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -236,7 +236,7 @@ public class UserModelJDBCImpl implements UserModelInt {
 		UserDTO dto = null;
 		try {
 			con = JDBCDataSource.getConnection();
-			ps = con.prepareStatement("select * from ST_USER where LOGIN=?");
+			ps = con.prepareStatement("select * from st_user where LOGIN=?");
 			ps.setString(1, login);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -282,7 +282,7 @@ public class UserModelJDBCImpl implements UserModelInt {
 		PreparedStatement ps = null;
 		ArrayList array = null;
 		UserDTO dto = null;
-		StringBuffer sql = new StringBuffer("select * from ST_USER where 1=1");
+		StringBuffer sql = new StringBuffer("select * from st_user where 1=1");
 		if (pageSize > 0) {
 			pageNo = (pageNo - 1) * pageSize;
 			sql.append("limit" + pageNo + "," + pageSize);
@@ -330,7 +330,7 @@ public class UserModelJDBCImpl implements UserModelInt {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ArrayList array = null;
-		StringBuffer sql = new StringBuffer("select * from ST_USER where 1=1");
+		StringBuffer sql = new StringBuffer("select * from st_user where 1=1");
 		if (dto != null) {
 			if (dto.getId() > 0) {
 				sql.append(" AND ID = " + dto.getId());
@@ -457,7 +457,7 @@ public class UserModelJDBCImpl implements UserModelInt {
 		log.debug("user model authenticate method start");
 		UserDTO dto = null;
 		Connection con = null;
-		StringBuffer sql = new StringBuffer("select * from ST_USER where login=? and password=?");
+		StringBuffer sql = new StringBuffer("select * from st_user where login=? and password=?");
 		try {
 			con = JDBCDataSource.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql.toString());
@@ -593,7 +593,7 @@ public class UserModelJDBCImpl implements UserModelInt {
 	 * public List getRoles(UserDTO dto) throws ApplicationException { // TODO
 	 * Auto-generated method stub log.debug("Model get roles Started");
 	 * StringBuffer sql = new StringBuffer(
-	 * "SELECT * FROM ST_USER WHERE role_Id=?"); Connection conn = null; List
+	 * "SELECT * FROM st_user WHERE role_Id=?"); Connection conn = null; List
 	 * list = new ArrayList(); try {
 	 * 
 	 * conn = JDBCDataSource.getConnection(); PreparedStatement pstmt =

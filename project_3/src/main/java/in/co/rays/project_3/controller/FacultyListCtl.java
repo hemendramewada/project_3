@@ -23,45 +23,36 @@ import in.co.rays.project_3.util.ServletUtility;
 
 /**
  * faculty list functionality ctl.To perform show,search and delete operation
- * 
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 @WebServlet(name = "FacultyListCtl", urlPatterns = { "/ctl/FacultyListCtl" })
 public class FacultyListCtl extends BaseCtl {
-
 	private static Logger log = Logger.getLogger(FacultyListCtl.class);
-
+     
 	protected void preload(HttpServletRequest request) {
-
-		CollegeModelInt model = ModelFactory.getInstance().getCollegeModel();
-		CourseModelInt model1 = ModelFactory.getInstance().getCourseModel();
-
+		CollegeModelInt model=ModelFactory.getInstance().getCollegeModel();
+		CourseModelInt model1=ModelFactory.getInstance().getCourseModel();
 		try {
-			List list = model.list();
-			List list1 = model1.list();
+			List list=model.list();
+			List list1=model1.list();
 			request.setAttribute("collegeList", list);
 			request.setAttribute("courseList", list1);
 		} catch (Exception e) {
-
+			// TODO: handle exception
 		}
-
+		
 	}
-
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-
 		log.debug("Faculty Ctl populateBean start");
-
 		FacultyDTO dto = new FacultyDTO();
-
 		dto.setFirstName(DataUtility.getString(request.getParameter("firstName")));
 		dto.setLastName(DataUtility.getString(request.getParameter("lastName")));
 		dto.setEmailId(DataUtility.getString(request.getParameter("login")));
 		dto.setCourseId(DataUtility.getLong(request.getParameter("courseId")));
 		dto.setCollegeId(DataUtility.getLong(request.getParameter("collegeId")));
-
-		populateBean(dto, request);
-
+		populateBean(dto,request);
+       
 		log.debug("Faculty Ctl populateBean end");
 		return dto;
 
@@ -73,17 +64,12 @@ public class FacultyListCtl extends BaseCtl {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		log.debug("Faculty Ctl do get start");
-
 		List list;
 		List next;
-
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
-
 		FacultyDTO bean = (FacultyDTO) populateDTO(request);
-
 		FacultyModelInt model = ModelFactory.getInstance().getFacultyModel();
-
 		try {
 			list = model.search(bean, pageNo, pageSize);
 			next = model.search(bean, pageNo + 1, pageSize);
@@ -100,7 +86,6 @@ public class FacultyListCtl extends BaseCtl {
 			ServletUtility.setPageNo(pageNo, request);
 			ServletUtility.setPageSize(pageSize, request);
 			ServletUtility.forward(getView(), request, response);
-
 		} catch (ApplicationException e) {
 			log.error(e);
 			ServletUtility.handleException(e, request, response);
@@ -119,25 +104,17 @@ public class FacultyListCtl extends BaseCtl {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
 		log.debug("Faculty Ctl do post start");
-
 		List list;
 		List next;
-
 		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
 		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
 		String op = DataUtility.getString(request.getParameter("operation"));
-
 		pageNo = (pageNo == 0) ? 1 : pageNo;
 		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
-
 		FacultyDTO dto = (FacultyDTO) populateDTO(request);
-
 		FacultyModelInt model = ModelFactory.getInstance().getFacultyModel();
-
 		String[] ids = request.getParameterValues("ids");
-
 		try {
 			if (OP_SEARCH.equalsIgnoreCase(op) || "Next".equalsIgnoreCase(op) || "Previous".equalsIgnoreCase(op)) {
 				if (OP_SEARCH.equalsIgnoreCase(op)) {
@@ -159,7 +136,7 @@ public class FacultyListCtl extends BaseCtl {
 				ServletUtility.redirect(ORSView.FACULTY_LIST_CTL, request, response);
 				return;
 			} else if (OP_DELETE.equalsIgnoreCase(op)) {
-				System.out.println("helloooo" + ids);
+				System.out.println("helloooo"+ids);
 				pageNo = 1;
 				if (ids != null && ids.length > 0) {
 					FacultyDTO deleteBean = new FacultyDTO();
@@ -172,16 +149,12 @@ public class FacultyListCtl extends BaseCtl {
 					ServletUtility.setErrorMessage("select at least one record", request);
 				}
 			}
-
 			dto = (FacultyDTO) populateDTO(request);
 			list = model.search(dto, pageNo, pageSize);
-
 			ServletUtility.setDto(dto, request);
-
 			next = model.search(dto, pageNo + 1, pageSize);
-
 			ServletUtility.setList(list, request);
-			if (list == null || list.size() == 0 && !OP_DELETE.equalsIgnoreCase(op)) {
+			if (list == null || list.size() == 0&&!OP_DELETE.equalsIgnoreCase(op)) {
 				ServletUtility.setErrorMessage("NO Record Found", request);
 
 			}
@@ -208,8 +181,9 @@ public class FacultyListCtl extends BaseCtl {
 
 	@Override
 	protected String getView() {
-
+		// TODO Auto-generated method stub
 		return ORSView.FACULTY_LIST_VIEW;
 	}
 
 }
+

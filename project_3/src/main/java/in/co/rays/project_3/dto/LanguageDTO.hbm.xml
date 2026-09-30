@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 07-Aug-2026, 12:32:35???pm by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <subclass name="in.co.rays.project_3.dto.LanguageDTO" extends="in.co.rays.project_3.dto.BaseDTO" discriminator-value="LanguageDTO" lazy="false">
+        <property name="languageCode" type="java.lang.String">
+            <column name="LANGUAGECODE" />
+        </property>
+        <property name="languageStatus" type="java.lang.String">
+            <column name="LANGUAGESTATUS" />
+        </property>
+        <property name="languageName" type="java.lang.String">
+            <column name="LANGUAGENAME" />
+        </property>
+        <property name="direction" type="java.lang.String">
+            <column name="DIRECTION" />
+        </property>
+    </subclass>
+</hibernate-mapping>

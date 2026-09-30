@@ -25,7 +25,7 @@ import in.co.rays.project_3.util.ServletUtility;
 /**
  * student functionality CRUD operation
  * 
- * @author Ankit Rawat
+ * @author Rajendra Singh
  *
  */
 @WebServlet(urlPatterns = { "/ctl/StudentCtl" })
@@ -34,7 +34,6 @@ public class StudentCtl extends BaseCtl {
 
 	@Override
 	protected void preload(HttpServletRequest request) {
-
 		CollegeModelInt model = ModelFactory.getInstance().getCollegeModel();
 		try {
 			List l = model.list();
@@ -53,7 +52,6 @@ public class StudentCtl extends BaseCtl {
 		boolean pass = true;
 
 		String op = DataUtility.getString(request.getParameter("operation"));
-
 		String email = request.getParameter("emailId");
 		String dob = request.getParameter("dob");
 
@@ -110,7 +108,7 @@ public class StudentCtl extends BaseCtl {
 
 	@Override
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-
+		System.out.println("student ctl populate bean........");
 		log.debug("StudentCtl Method populatebean Started");
 
 		StudentDTO dto = new StudentDTO();
@@ -142,14 +140,13 @@ public class StudentCtl extends BaseCtl {
 
 		log.debug("StudentCtl Method doGet Started");
 
-//		String op = DataUtility.getString(request.getParameter("operation"));
+		String op = DataUtility.getString(request.getParameter("operation"));
 		long id = DataUtility.getLong(request.getParameter("id"));
 
 		// get model
 
 		StudentModelInt model = ModelFactory.getInstance().getStudentModel();
-
-		if (id > 0) {
+		if (id > 0 || op != null) {
 			StudentDTO dto;
 			try {
 				dto = model.findByPK(id);
@@ -160,9 +157,8 @@ public class StudentCtl extends BaseCtl {
 				return;
 			}
 		}
-		log.debug("StudentCtl Method doGett Ended");
 		ServletUtility.forward(getView(), request, response);
-		
+		log.debug("StudentCtl Method doGett Ended");
 	}
 
 	/**
@@ -170,7 +166,7 @@ public class StudentCtl extends BaseCtl {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		log.debug("StudentCtl Method doPost Started");
 
 		String op = DataUtility.getString(request.getParameter("operation"));
@@ -182,16 +178,16 @@ public class StudentCtl extends BaseCtl {
 		long id = DataUtility.getLong(request.getParameter("id"));
 
 		if (OP_SAVE.equalsIgnoreCase(op) || OP_UPDATE.equalsIgnoreCase(op)) {
-
 			StudentDTO dto = (StudentDTO) populateDTO(request);
 
 			try {
 				if (id > 0) {
 					model.update(dto);
 					ServletUtility.setSuccessMessage("Data is successfully Update", request);
+					ServletUtility.setDto(dto, request);
+
 				} else {
 					try {
-
 						model.add(dto);
 						ServletUtility.setSuccessMessage("Data is successfully saved", request);
 					} catch (ApplicationException e) {
@@ -205,7 +201,6 @@ public class StudentCtl extends BaseCtl {
 
 				}
 
-				ServletUtility.setDto(dto, request);
 
 			} catch (ApplicationException e) {
 				log.error(e);

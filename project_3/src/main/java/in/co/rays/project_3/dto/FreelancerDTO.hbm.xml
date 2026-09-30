@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 07-Aug-2026, 12:32:35???pm by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <subclass name="in.co.rays.project_3.dto.FreelancerDTO" extends="in.co.rays.project_3.dto.BaseDTO" discriminator-value="FreelancerDTO" lazy="false">
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="skill" type="java.lang.String">
+            <column name="SKILL" />
+        </property>
+        <property name="experience" type="int">
+            <column name="EXPERIENCE" />
+        </property>
+        <property name="hourlyRate" type="double">
+            <column name="HOURLYRATE" />
+        </property>
+    </subclass>
+</hibernate-mapping>

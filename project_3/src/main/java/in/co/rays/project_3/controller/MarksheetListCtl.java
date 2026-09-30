@@ -22,7 +22,7 @@ import in.co.rays.project_3.util.ServletUtility;
 /**
  * marksheet functionality ctl.to show list of marksheet
  * 
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 @WebServlet(name = "MarksheetListCtl", urlPatterns = { "/ctl/MarksheetListCtl" })
@@ -32,33 +32,27 @@ public class MarksheetListCtl extends BaseCtl {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	private static Logger log = Logger.getLogger(MarksheetListCtl.class);
 
 	protected void preload(HttpServletRequest request) {
-
 		MarksheetModelInt model = ModelFactory.getInstance().getMarksheetModel();
-
 		try {
 			List list = model.list();
 			request.setAttribute("RollNo", list);
 
 		} catch (Exception e) {
-
+			// TODO: handle exception
 		}
 	}
 
 	@Override
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-
 		MarksheetDTO dto = new MarksheetDTO();
-
 		dto.setId(DataUtility.getLong(request.getParameter("rollId")));
 		dto.setRollNo(DataUtility.getString(request.getParameter("rollNo")));
 		dto.setStudentId(DataUtility.getLong(request.getParameter("studentId")));
 		dto.setName(DataUtility.getString(request.getParameter("name")));
 		populateBean(dto, request);
-
 		System.out.println("<<<>>>>>" + dto.getRollNo());
 
 		return dto;
@@ -69,7 +63,6 @@ public class MarksheetListCtl extends BaseCtl {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
 		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
 
@@ -81,13 +74,11 @@ public class MarksheetListCtl extends BaseCtl {
 
 		List list = null;
 		List next = null;
-
 		MarksheetModelInt model = ModelFactory.getInstance().getMarksheetModel();
 		try {
 			list = model.search(dto, pageNo, pageSize);
 			ServletUtility.setDto(dto, request);
 			next = model.search(dto, pageNo + 1, pageSize);
-
 		} catch (ApplicationException e) {
 			log.error(e);
 			ServletUtility.handleException(e, request, response);
@@ -134,6 +125,7 @@ public class MarksheetListCtl extends BaseCtl {
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
+		// get the selected checkbox ids array for delete list
 		String[] ids = request.getParameterValues("ids");
 
 		MarksheetModelInt model = ModelFactory.getInstance().getMarksheetModel();
@@ -175,15 +167,10 @@ public class MarksheetListCtl extends BaseCtl {
 				}
 			}
 			dto = (MarksheetDTO) populateDTO(request);
-
 			list = model.search(dto, pageNo, pageSize);// calling search
-
 			ServletUtility.setDto(dto, request);
-
 			next = model.search(dto, pageNo + 1, pageSize);
-
 			ServletUtility.setList(list, request);
-
 			if (list == null || list.size() == 0 && !OP_DELETE.equalsIgnoreCase(op)) {
 				ServletUtility.setErrorMessage("No record found ", request);
 			}
@@ -209,7 +196,6 @@ public class MarksheetListCtl extends BaseCtl {
 
 	@Override
 	protected String getView() {
-
 		return ORSView.MARKSHEET_LIST_VIEW;
 	}
 }

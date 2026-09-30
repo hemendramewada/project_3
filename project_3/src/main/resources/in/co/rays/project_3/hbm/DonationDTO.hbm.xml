@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="in.co.rays.project_3.dto">
+
+	<class name="DonationDTO" table="ST_DONATION">
+
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="identity"/>
+		</id>
+
+		<!-- Donor Name -->
+		<property name="donorName" type="java.lang.String">
+			<column name="DONOR_NAME" not-null="true" />
+		</property>
+
+		<!-- Donation Amount -->
+		<property name="amount" type="java.lang.Long">
+			<column name="AMOUNT" not-null="true" />
+		</property>
+
+		<!-- Donation Date -->
+		<property name="donationDate" type="java.util.Date">
+			<column name="DONATION_DATE" />
+		</property>
+
+	</class>
+
+</hibernate-mapping>

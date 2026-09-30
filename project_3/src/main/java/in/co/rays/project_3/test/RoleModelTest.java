@@ -77,8 +77,8 @@ public static void deleteTest() throws ApplicationException {
 public static void addTest() throws Exception{
 	// TODO Auto-generated method stub
 	RoleDTO dto=new RoleDTO();
-	dto.setName("admin");
-	dto.setDescription("admin panel");
+	dto.setName("Student");
+	dto.setDescription("Student panel");
 	dto.setCreatedBy("yashkanoongo493@gmail.com");
 	dto.setModifiedBy("yashkanoongo493@gmail.com");
 	dto.setCreatedDatetime(new Timestamp(new Date().getTime()));

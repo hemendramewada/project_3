@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="in.co.rays.project_3.dto.ProfileDTO" table="st_profile">
+
+        <id name="id" column="ID">
+            <generator class="identity"/>
+        </id>
+
+        <property name="fullName" column="FULLNAME"/>
+        <property name="gender" column="GENDER"/>
+        <property name="dob" column="DOB"/>
+        <property name="profileStatus" column="PROFILESTATUS"/>
+
+    </class>
+
+</hibernate-mapping>

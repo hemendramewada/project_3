@@ -1,7 +1,7 @@
 package in.co.rays.project_3.exception;
 
 /**
- * @author Hemendra mewada
+ * @author Rajendra Singh
  */
 public class RecordNotFoundException extends Exception{
 	

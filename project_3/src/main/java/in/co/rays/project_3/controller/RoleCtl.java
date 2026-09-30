@@ -22,8 +22,7 @@ import in.co.rays.project_3.util.ServletUtility;
 
 /**
  * role functionality controller.to perform add,delete ,update operation
- * 
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 @WebServlet(urlPatterns = { "/ctl/RoleCtl" })
@@ -32,7 +31,7 @@ public class RoleCtl extends BaseCtl {
 	/**
 	 * 
 	 */
-
+	private static final long serialVersionUID = 1L;
 	private static Logger log = Logger.getLogger(RoleCtl.class);
 
 	protected boolean validate(HttpServletRequest request) {
@@ -40,9 +39,7 @@ public class RoleCtl extends BaseCtl {
 		log.debug("RoleCtl Method validate Started");
 
 		boolean pass = true;
-
-		System.out.println(request.getParameter("name") + "......" + request.getParameter("description"));
-
+         System.out.println(request.getParameter("name")+"......"+request.getParameter("description"));
 		if (DataValidator.isNull(request.getParameter("name"))) {
 			request.setAttribute("name", PropertyReader.getValue("error.require", "Name"));
 			pass = false;
@@ -59,31 +56,22 @@ public class RoleCtl extends BaseCtl {
 	}
 
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-
 		RoleDTO dto = new RoleDTO();
-
 		dto.setId(DataUtility.getLong(request.getParameter("id")));
 
 		dto.setName(DataUtility.getString(request.getParameter("name")));
 		dto.setDescription(DataUtility.getString(request.getParameter("description")));
-
-		populateBean(dto, request);
-
+		populateBean(dto,request);
 		return dto;
 
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
 		String op = request.getParameter("operation");
-
 		long id = DataUtility.getLong(request.getParameter("id"));
-
 		RoleModelInt model = ModelFactory.getInstance().getRoleModel();
-
 		if (id > 0 || op != null) {
-
 			RoleDTO dto;
 			try {
 				dto = model.findByPK(id);
@@ -99,29 +87,23 @@ public class RoleCtl extends BaseCtl {
 		ServletUtility.forward(getView(), request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String op = request.getParameter("operation");
-
 		long id = DataUtility.getLong(request.getParameter("id"));
-
 		RoleModelInt model = ModelFactory.getInstance().getRoleModel();
-
+		System.out.println(" method do postkkkkkkkkk");
 		if (OP_SAVE.equalsIgnoreCase(op) || OP_UPDATE.equalsIgnoreCase(op)) {
 
 			RoleDTO dto = (RoleDTO) populateDTO(request);
-
 			try {
 				if (id > 0) {
-
 					model.update(dto);
-
 					ServletUtility.setSuccessMessage("Successfully Updated", request);
+					ServletUtility.setDto(dto, request);
 				} else {
 					try {
-						// long pk =
-						model.add(dto);
+						//long pk = 
+								model.add(dto);
 						ServletUtility.setSuccessMessage("Successfully Saved", request);
 					} catch (ApplicationException e) {
 						log.error(e);
@@ -134,7 +116,7 @@ public class RoleCtl extends BaseCtl {
 
 				}
 
-				ServletUtility.setDto(dto, request);
+				//
 
 			} catch (ApplicationException e) {
 				log.error(e);
@@ -150,10 +132,8 @@ public class RoleCtl extends BaseCtl {
 			RoleDTO dto = (RoleDTO) populateDTO(request);
 			try {
 				model.delete(dto);
-
 				ServletUtility.redirect(ORSView.ROLE_LIST_CTL, request, response);
 				return;
-
 			} catch (ApplicationException e) {
 				log.error(e);
 				ServletUtility.handleException(e, request, response);
@@ -179,7 +159,7 @@ public class RoleCtl extends BaseCtl {
 
 	@Override
 	protected String getView() {
-
+		// TODO Auto-generated method stub
 		return ORSView.ROLE_VIEW;
 	}
 

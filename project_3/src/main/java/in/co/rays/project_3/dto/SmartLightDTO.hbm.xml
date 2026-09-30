@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 07-Aug-2026, 12:32:35???pm by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <subclass name="in.co.rays.project_3.dto.SmartLightDTO" extends="in.co.rays.project_3.dto.BaseDTO" discriminator-value="SmartLightDTO" lazy="false">
+        <property name="lightId" type="long">
+            <column name="LIGHTID" />
+        </property>
+        <property name="brightnessLevel" type="java.lang.Integer">
+            <column name="BRIGHTNESSLEVEL" />
+        </property>
+        <property name="lightCode" type="java.lang.String">
+            <column name="LIGHTCODE" />
+        </property>
+        <property name="roomName" type="java.lang.String">
+            <column name="ROOMNAME" />
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="STATUS" />
+        </property>
+    </subclass>
+</hibernate-mapping>

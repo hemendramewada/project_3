@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="in.co.rays.project_3.dto">
+
+	<class name="LanguageDTO" table="ST_LANGUAGE">
+
+		<id name="id" type="java.lang.Long">
+			<column name="ID"/>
+			<generator class="identity"/>
+		</id>
+
+		<!-- UNIQUE languageCode -->
+		<property name="languageCode" type="java.lang.String">
+			<column name="LANGUAGE_CODE" unique="true" not-null="true"/>
+		</property>
+
+		<property name="languageName" type="java.lang.String">
+			<column name="LANGUAGE_NAME" not-null="true"/>
+		</property>
+
+		<property name="direction" type="java.lang.String">
+			<column name="DIRECTION"/>
+		</property>
+
+		<property name="languageStatus" type="java.lang.String">
+			<column name="LANGUAGE_STATUS"/>
+		</property>
+
+	</class>
+
+</hibernate-mapping>

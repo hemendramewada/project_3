@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 07-Aug-2026, 12:32:35???pm by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <subclass name="in.co.rays.project_3.dto.SessionDTO" extends="in.co.rays.project_3.dto.BaseDTO" discriminator-value="SessionDTO" lazy="false">
+        <property name="sessionToken" type="java.lang.String">
+            <column name="SESSIONTOKEN" />
+        </property>
+        <property name="logoutTime" type="java.util.Date">
+            <column name="LOGOUTTIME" />
+        </property>
+        <property name="loginTime" type="java.util.Date">
+            <column name="LOGINTIME" />
+        </property>
+        <property name="sessionStatus" type="java.lang.String">
+            <column name="SESSIONSTATUS" />
+        </property>
+        <property name="userName" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+    </subclass>
+</hibernate-mapping>

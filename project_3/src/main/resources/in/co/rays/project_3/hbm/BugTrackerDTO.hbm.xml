@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="in.co.rays.project_3.dto">
+
+	<class name="BugTrackerDTO" table="ST_BUGTRACKER">
+
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="increment" />
+		</id>
+		<property name="bugId" type="int">
+			<column name="BUGID" />
+		</property>
+		<property name="severity" type="java.lang.String">
+			<column name="SEVERITY" />
+		</property>
+		<property name="title" type="java.lang.String">
+			<column name="TITLE" />
+		</property>
+		<property name="assignedTo" type="java.lang.String">
+			<column name="ASSIGNEDTO" />
+		</property>
+		<property name="status" type="java.lang.String">
+			<column name="STATUS" />
+		</property>
+	</class>
+</hibernate-mapping>

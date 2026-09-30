@@ -9,7 +9,7 @@ import in.co.rays.project_3.exception.DuplicateRecordException;
 
 /**
  * Interface of Faculty model
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 public interface FacultyModelInt {

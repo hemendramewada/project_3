@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.exception.JDBCConnectionException;
 
 import in.co.rays.project_3.dto.RoleDTO;
 import in.co.rays.project_3.exception.ApplicationException;
@@ -17,7 +16,7 @@ import in.co.rays.project_3.util.JDBCDataSource;
 
 /**
  * JDBC implements of Role model
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 public class RoleModelJDBCImpl implements RoleModelInt{
@@ -39,8 +38,6 @@ public class RoleModelJDBCImpl implements RoleModelInt{
 			while (r.next()) {
 				pk = (int) r.getLong(1);
 			}
-		} catch (JDBCConnectionException e) {
-			throw e;
 		} catch (Exception e) {
 			log.error("Database Exception", e);
 			throw new DatabaseException("Exception getting in pk");

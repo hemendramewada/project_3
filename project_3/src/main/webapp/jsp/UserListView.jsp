@@ -1,3 +1,4 @@
+
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="in.co.rays.project_3.model.ModelFactory"%>
@@ -17,17 +18,15 @@
 <script src="<%=ORSView.APP_CONTEXT%>/js/jquery.min.js"></script>
 <script type="text/javascript"
 	src="<%=ORSView.APP_CONTEXT%>/js/CheckBox11.js"></script>
-
 <style>
 .hm {
-	background-image: url('<%=ORSView.APP_CONTEXT%>/img/list.png');
-	
+	background-image: url('<%=ORSView.APP_CONTEXT%>/img/list2.jpg');
 	background-repeat: no-repeat;
-	background-attachment: fixed; 
+	background-attachment: fixed;
 	background-size: cover;
 	padding-top: 85px;
-	
-    /*  background-size: 100%; */
+
+	/*  background-size: 100%; */
 }
 
 .p1 {
@@ -48,32 +47,32 @@
 			<jsp:useBean id="dto" class="in.co.rays.project_3.dto.UserDTO"
 				scope="request"></jsp:useBean>
 			<%
-				List list1 = (List) request.getAttribute("roleList");
+			List list1 = (List) request.getAttribute("roleList");
 			%>
 
 
 			<%
-				int pageNo = ServletUtility.getPageNo(request);
-				int pageSize = ServletUtility.getPageSize(request);
-				int index = ((pageNo - 1) * pageSize) + 1;
-				int nextPageSize = DataUtility.getInt(request.getAttribute("nextListSize").toString());
-				RoleDTO rbean1 = new RoleDTO();
-				RoleModelInt rmodel = ModelFactory.getInstance().getRoleModel();
+			int pageNo = ServletUtility.getPageNo(request);
+			int pageSize = ServletUtility.getPageSize(request);
+			int index = ((pageNo - 1) * pageSize) + 1;
+			int nextPageSize = DataUtility.getInt(request.getAttribute("nextListSize").toString());
+			RoleDTO rbean1 = new RoleDTO();
+			RoleModelInt rmodel = ModelFactory.getInstance().getRoleModel();
 
-				List list = ServletUtility.getList(request);
+			List list = ServletUtility.getList(request);
 
-				Iterator<UserDTO> it = list.iterator();
-				if (list.size() != 0) {
+			Iterator<UserDTO> it = list.iterator();
+			if (list.size() != 0) {
 			%>
 			<center>
-				<h1 class="text-dark font-weight-bold pt-3">
-					<u>User List</u>
+				<h1 class="text-dark ">
+					<b><u>User List</u></b>
 				</h1>
 			</center>
 			<div class="row">
 				<div class="col-md-4"></div>
 				<%
-					if (!ServletUtility.getSuccessMessage(request).equals("")) {
+				if (!ServletUtility.getSuccessMessage(request).equals("")) {
 				%>
 
 				<div class="col-md-4 alert alert-success alert-dismissible"
@@ -84,7 +83,7 @@
 					</h4>
 				</div>
 				<%
-					}
+				}
 				%>
 				<div class="col-md-4"></div>
 			</div>
@@ -92,7 +91,7 @@
 				<div class="col-md-4"></div>
 
 				<%
-					if (!ServletUtility.getErrorMessage(request).equals("")) {
+				if (!ServletUtility.getErrorMessage(request).equals("")) {
 				%>
 				<div class=" col-md-4 alert alert-danger alert-dismissible">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -101,7 +100,7 @@
 					</h4>
 				</div>
 				<%
-					}
+				}
 				%>
 				<div class="col-md-4"></div>
 			</div>
@@ -135,9 +134,9 @@
 
 			</br>
 			<div style="margin-bottom: 20px;" class="table-responsive">
-				<table class="table table-bordered table-striped table-hover">
+				<table class="table table-bordered table-dark table-hover">
 					<thead>
-						<tr style="background-color: #f79d65; font-size: 18px;">
+						<tr style="background-color: red;">
 
 							<th width="10%"><input type="checkbox" id="select_all"
 								name="Select" class="text"> Select All</th>
@@ -152,17 +151,18 @@
 						</tr>
 					</thead>
 					<%
-						while (it.hasNext()) {
-								dto = it.next();
+					while (it.hasNext()) {
+						dto = it.next();
 
-								RoleDTO rbean = rmodel.findByPK(dto.getRoleId());
+						RoleDTO rbean = rmodel.findByPK(dto.getRoleId());
 					%>
 					<tbody>
-						<tr style="font-weight: bold;">
-							<td align="center"><input type="checkbox" class="checkbox"
-								name="ids" value="<%=dto.getId()%>"
-								<%if (dto.getRoleId() == RoleDTO.ADMIN) {%> <%="disabled"%>
-								<%}%>></td>
+						<tr>
+							<td align="center">
+							
+							<input type="checkbox" class="checkbox" name="ids" 
+							value="<%=dto.getId()%>" <%if (dto.getRoleId() == RoleDTO.ADMIN) {%> <%="disabled"%><%}%>></td>
+							
 							<td class="text"><%=index++%></td>
 							<td class="text"><%=dto.getFirstName()%></td>
 							<td class="text"><%=dto.getLastName()%></td>
@@ -170,13 +170,16 @@
 							<td class="text"><%=dto.getGender()%></td>
 							<td class="text"><%=rbean.getName()%></td>
 							<td class="text"><%=DataUtility.getDateString(dto.getDob())%></td>
-							<td class="text"><a href="UserCtl?id=<%=dto.getId()%>"
-								<%if (dto.getRoleId() == RoleDTO.ADMIN) {%>
-								onclick="return false;" <%}%>>Edit</a></td>
+							
+							<td class="text">
+							  <a href="UserCtl?id=<%=dto.getId()%>"
+								 <%if (dto.getRoleId() == RoleDTO.ADMIN) {%>
+								 onclick="return false;" <%}%>>Edit</a>
+							</td>
 						</tr>
 					</tbody>
 					<%
-						}
+					}
 					%>
 				</table>
 			</div>
@@ -184,8 +187,8 @@
 				<tr>
 					<td><input type="submit" name="operation"
 						class="btn btn-warning btn-md" style="font-size: 17px"
-						value="<%=UserListCtl.OP_PREVIOUS%>"
-						<%=pageNo > 1 ? "" : "disabled"%>></td>
+						value="<%=UserListCtl.OP_PREVIOUS%>" <%=pageNo > 1 ? "" : "disabled"%>></td>
+				
 					<td><input type="submit" name="operation"
 						class="btn btn-primary btn-md" style="font-size: 17px"
 						value="<%=UserListCtl.OP_NEW%>"></td>
@@ -195,15 +198,15 @@
 
 					<td align="right"><input type="submit" name="operation"
 						class="btn btn-warning btn-md" style="font-size: 17px"
-						style="padding: 5px;" value="<%=UserListCtl.OP_NEXT%>"
-						<%=(nextPageSize != 0) ? "" : "disabled"%>></td>
+						style="padding: 5px;" 
+						value="<%=UserListCtl.OP_NEXT%>" <%=(nextPageSize > 0) ? "" : "disabled"%>></td>
 				</tr>
 				<tr></tr>
 			</table>
 
 			<%
-				}
-				if (list.size() == 0) {
+			}
+			if (list.size() == 0) {
 			%>
 			<center>
 				<h1 style="font-size: 40px; color: #162390;">User List</h1>
@@ -213,7 +216,7 @@
 				<div class="col-md-4"></div>
 
 				<%
-					if (!ServletUtility.getErrorMessage(request).equals("")) {
+				if (!ServletUtility.getErrorMessage(request).equals("")) {
 				%>
 				<div class=" col-md-4 alert alert-danger alert-dismissible">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -222,7 +225,7 @@
 					</h4>
 				</div>
 				<%
-					}
+				}
 				%>
 				<div class="col-md-4"></div>
 			</div>
@@ -235,7 +238,7 @@
 
 
 			<%
-				}
+			}
 			%>
 			<%-- <%
 				if (!ServletUtility.getSuccessMessage(request).equals("")) {

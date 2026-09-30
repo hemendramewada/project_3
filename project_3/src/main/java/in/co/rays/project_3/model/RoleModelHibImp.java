@@ -7,7 +7,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.exception.JDBCConnectionException;
 
 import in.co.rays.project_3.dto.RoleDTO;
 import in.co.rays.project_3.exception.ApplicationException;
@@ -16,7 +15,7 @@ import in.co.rays.project_3.util.HibDataSource;
 
 /**
  * Hibernate implements of Role model
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 public class RoleModelHibImp implements RoleModelInt{
@@ -84,11 +83,7 @@ public class RoleModelHibImp implements RoleModelInt{
 			session.update(dto);
 			tx.commit();
 
-		}catch (JDBCConnectionException e) {
-			// TODO: handle exception
-		}
-		catch (HibernateException e) {
-			
+		} catch (HibernateException e) {
 			e.printStackTrace();
 			// TODO: handle exception
 			if (tx != null) {
@@ -120,11 +115,7 @@ public class RoleModelHibImp implements RoleModelInt{
 				criteria.setMaxResults(pageSize);
 			}
 			list = criteria.list();
-		} catch (JDBCConnectionException e) {
-			
-			throw e;
-		}
-		catch (HibernateException e) {
+		} catch (HibernateException e) {
 
 			throw new ApplicationException("Exception : Exception in  role list");
 		} finally {

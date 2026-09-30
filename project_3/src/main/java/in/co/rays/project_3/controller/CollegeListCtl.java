@@ -20,43 +20,35 @@ import in.co.rays.project_3.util.PropertyReader;
 import in.co.rays.project_3.util.ServletUtility;
 
 /**
- * college list ctl.to perform search and show list operation
- * 
- * @author Hemendra mewada
+ *college list ctl.to perform search and show list operation
+ * @author Rajendra Singh
  *
  */
 @WebServlet(name = "CollegeListCtl", urlPatterns = { "/ctl/CollegeListCtl" })
-
 public class CollegeListCtl extends BaseCtl {
-
 	private static Logger log = Logger.getLogger(CollegeListCtl.class);
-
-	protected void preload(HttpServletRequest request) {
-
-		CollegeModelInt model = ModelFactory.getInstance().getCollegeModel();
-
+     
+	protected void preload(HttpServletRequest request){
+		CollegeModelInt model=ModelFactory.getInstance().getCollegeModel(); 
 		try {
-			List list = model.list();
+			List list=model.list();
 			request.setAttribute("collegeList", list);
-
 		} catch (Exception e) {
-
+			// TODO: handle exception
 		}
 	}
-
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-
+		System.out.println("college list populate Bean");
 		log.debug("college list populate bean start");
-
 		CollegeDTO dto = new CollegeDTO();
-		// bean.setName(request.getParameter("name"));
+		//bean.setName(request.getParameter("name"));
 		dto.setId(DataUtility.getLong(request.getParameter("name")));
 		dto.setCity(request.getParameter("city"));
 		dto.setState(request.getParameter("state"));
-		populateBean(dto, request);
-
+		populateBean(dto,request);
 		log.debug("college list populate bean end");
-
+		System.out.println("college list populate Bean" + dto);
+		
 		return dto;
 	}
 
@@ -66,17 +58,15 @@ public class CollegeListCtl extends BaseCtl {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
+		System.out.println("college list do get start");
 		log.debug("college list do get start");
 
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
 		CollegeDTO dto = (CollegeDTO) populateDTO(request);
 		CollegeModelInt model = ModelFactory.getInstance().getCollegeModel();
-
 		List list;
 		List next;
-
 		try {
 			list = model.search(dto, pageNo, pageSize);
 			next = model.search(dto, pageNo + 1, pageSize);
@@ -95,7 +85,6 @@ public class CollegeListCtl extends BaseCtl {
 			ServletUtility.setPageNo(pageNo, request);
 			ServletUtility.setPageSize(pageSize, request);
 			ServletUtility.forward(getView(), request, response);
-
 		} catch (ApplicationException e) {
 			log.error(e);
 			ServletUtility.handleException(e, request, response);
@@ -111,9 +100,8 @@ public class CollegeListCtl extends BaseCtl {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
+		System.out.println("college list do post start");
 		log.debug("college list do post start");
-
 		List list;
 		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
 		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
@@ -125,7 +113,6 @@ public class CollegeListCtl extends BaseCtl {
 		CollegeModelInt model = ModelFactory.getInstance().getCollegeModel();
 		CollegeDTO dto = (CollegeDTO) populateDTO(request);
 		String[] ids = request.getParameterValues("ids");
-
 		try {
 			if (OP_SEARCH.equalsIgnoreCase(op) || "next".equalsIgnoreCase(op) || "previous".equalsIgnoreCase(op)) {
 				if (OP_SEARCH.equalsIgnoreCase(op)) {
@@ -143,7 +130,7 @@ public class CollegeListCtl extends BaseCtl {
 
 				ServletUtility.redirect(ORSView.COLLEGE_LIST_CTL, request, response);
 				return;
-			} else if (OP_BACK.equalsIgnoreCase(op)) {
+			}else if (OP_BACK.equalsIgnoreCase(op)) {
 				ServletUtility.redirect(ORSView.COLLEGE_LIST_CTL, request, response);
 				return;
 			} else if (OP_DELETE.equalsIgnoreCase(op)) {
@@ -159,13 +146,13 @@ public class CollegeListCtl extends BaseCtl {
 					ServletUtility.setErrorMessage("Select at least one record", request);
 				}
 			}
-
 			list = model.search(dto, pageNo, pageSize);
 			ServletUtility.setDto(dto, request);
 			List next = model.search(dto, pageNo + 1, pageSize);
+			
 
 			ServletUtility.setList(list, request);
-			if (list == null || list.size() == 0 && !OP_DELETE.equalsIgnoreCase(op)) {
+			if (list == null || list.size() == 0&&!OP_DELETE.equalsIgnoreCase(op)) {
 				ServletUtility.setErrorMessage("No record found", request);
 			}
 			if (next == null || next.size() == 0) {
@@ -178,7 +165,6 @@ public class CollegeListCtl extends BaseCtl {
 			ServletUtility.setPageNo(pageNo, request);
 			ServletUtility.setPageSize(pageSize, request);
 			ServletUtility.forward(getView(), request, response);
-
 		} catch (ApplicationException e) {
 			log.error(e);
 			ServletUtility.handleException(e, request, response);
@@ -191,8 +177,9 @@ public class CollegeListCtl extends BaseCtl {
 
 	@Override
 	protected String getView() {
-
+		// TODO Auto-generated method stub
 		return ORSView.COLLEGE_LIST_VIEW;
 	}
 
 }
+

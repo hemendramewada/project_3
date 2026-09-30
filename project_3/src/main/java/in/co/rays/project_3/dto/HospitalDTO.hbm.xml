@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 07-Aug-2026, 12:32:35???pm by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <subclass name="in.co.rays.project_3.dto.HospitalDTO" extends="in.co.rays.project_3.dto.BaseDTO" discriminator-value="HospitalDTO" lazy="false">
+        <property name="hospitalId" type="java.lang.String">
+            <column name="HOSPITALID" />
+        </property>
+        <property name="city" type="java.lang.String">
+            <column name="CITY" />
+        </property>
+        <property name="contactNumber" type="java.lang.String">
+            <column name="CONTACTNUMBER" />
+        </property>
+        <property name="hospitalName" type="java.lang.String">
+            <column name="HOSPITALNAME" />
+        </property>
+    </subclass>
+</hibernate-mapping>

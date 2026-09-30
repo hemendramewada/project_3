@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.hibernate.exception.JDBCConnectionException;
 
 import in.co.rays.project_3.dto.BaseDTO;
 import in.co.rays.project_3.dto.RoleDTO;
 import in.co.rays.project_3.dto.UserDTO;
 import in.co.rays.project_3.exception.ApplicationException;
+import in.co.rays.project_3.exception.DatabaseException;
 import in.co.rays.project_3.model.ModelFactory;
 import in.co.rays.project_3.model.RoleModelInt;
 import in.co.rays.project_3.model.UserModelInt;
@@ -26,32 +26,25 @@ import in.co.rays.project_3.util.ServletUtility;
 /**
  * login functionality controller. perform login operation
  * 
- * @author Hemendra mewada
+ * @author Rajendra Singh
  *
  */
 
 @WebServlet(urlPatterns = { "/LoginCtl" })
 public class LoginCtl extends BaseCtl {
-
 	private static final long serialVersionUID = 1L;
-
 	public static final String OP_REGISTER = "Register";
 	public static final String OP_SIGN_IN = "SignIn";
 	public static final String OP_SIGN_UP = "SignUp";
 	public static final String OP_LOG_OUT = "logout";
-
 	private static Logger log = Logger.getLogger(LoginCtl.class);
 
 	protected boolean validate(HttpServletRequest request) {
-
 		boolean pass = true;
-
 		String op = request.getParameter("operation");
-
 		if (OP_SIGN_UP.equals(op) || OP_LOG_OUT.equals(op)) {
 			return pass;
 		}
-//		System.out.println(request.getParameter("login") + ".........." + request.getParameter("password"));
 
 		if (DataValidator.isNull(request.getParameter("login"))) {
 			request.setAttribute("login", PropertyReader.getValue("error.require", "Login Id"));
@@ -70,10 +63,7 @@ public class LoginCtl extends BaseCtl {
 	}
 
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-
 		UserDTO dto = new UserDTO();
-
-		System.out.println(request.getParameter("login"));
 
 		dto.setId(DataUtility.getLong(request.getParameter("id")));
 		dto.setLogin(DataUtility.getString(request.getParameter("login")));
@@ -84,8 +74,6 @@ public class LoginCtl extends BaseCtl {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
-		System.out.println(request.getParameter("login"));
 
 		String op = request.getParameter("operation");
 
@@ -107,8 +95,8 @@ public class LoginCtl extends BaseCtl {
 			try {
 				dto = model.findByPK(id);
 				ServletUtility.setDto(dto, request);
-			} catch (ApplicationException e) {
-
+			}catch (ApplicationException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 				ServletUtility.handleException(e, request, response);
 				return;
@@ -121,13 +109,15 @@ public class LoginCtl extends BaseCtl {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
 		String op = request.getParameter("operation");
+		
 
 		HttpSession session = request.getSession(true);
 
 		UserModelInt userModel = ModelFactory.getInstance().getUserModel();
 		RoleModelInt model1 = ModelFactory.getInstance().getRoleModel();
+
+		// long id = DataUtility.getLong(request.getParameter("id"));
 
 		if (OP_SIGN_IN.equalsIgnoreCase(op)) {
 			UserDTO dto = (UserDTO) populateDTO(request);
@@ -145,7 +135,6 @@ public class LoginCtl extends BaseCtl {
 						ServletUtility.redirect(ORSView.WELCOME_CTL, request, response);
 						return;
 					} else {
-						System.out.println();
 						if (rdto.getId() == 1) {
 							ServletUtility.redirect(uri, request, response);
 						} else {
@@ -161,11 +150,9 @@ public class LoginCtl extends BaseCtl {
 					ServletUtility.setErrorMessage("Invalid LoginId And Password!", request);
 				}
 
-			} catch (ApplicationException | JDBCConnectionException e) {
+			} catch (ApplicationException e) {
 				log.error(e);
 				ServletUtility.handleException(e, request, response);
-//				ServletUtility.setErrorMessage("MySQL container is down. Communication failed!!", request);
-//				ServletUtility.forward(getView(), request, response);
 				return;
 			}
 
@@ -182,7 +169,7 @@ public class LoginCtl extends BaseCtl {
 
 	@Override
 	protected String getView() {
-
+		// TODO Auto-generated method stub
 		return ORSView.LOGIN_VIEW;
 	}
 

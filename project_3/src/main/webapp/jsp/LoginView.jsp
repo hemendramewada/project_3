@@ -33,7 +33,7 @@
 }
 
 .grad {
-	background-image: linear-gradient(to bottom right, #ffd3ac, #f79d65);
+	background-image: linear-gradient(to bottom right, white, grey);
 	background-repeat: no-repeat;
 	background-size: 100%;
 }
@@ -46,12 +46,13 @@ i.css {
 }
 
 .p4 {
-	background-image: url('<%=ORSView.APP_CONTEXT%>/img/login.png');
+	background-image: url('<%=ORSView.APP_CONTEXT%>/img/loginhere.jpg');
 	background-repeat: no-repeat;
-	background-attachment: fixed;
+	background-attachment: fixed; 
 	background-size: cover;
 	padding-top: 75px;
-	/*background-position: center top;*/
+/*background-position: center top;*/
+	
 }
 </style>
 
@@ -73,9 +74,7 @@ i.css {
 					<div class="card input-group-addon grad	">
 						<div class="card-body">
 
-							<h3 class="text-center text-dark">
-								<b>Login</b>
-							</h3>
+							<h3 class="text-center text-dark"><b>Login</b></h3>
 							<!--Body-->
 							<div>
 
@@ -99,6 +98,7 @@ i.css {
 										if (!ServletUtility.getErrorMessage(request).equals("")) {
 									%>
 									<div class="alert alert-danger alert-dismissible">
+		
 										<button type="button" class="close" data-dismiss="alert">&times;</button>
 										<%=ServletUtility.getErrorMessage(request)%>
 									</div>
@@ -160,17 +160,17 @@ i.css {
 							<div class="text-center">
 
 								<input type="submit" name="operation"
-									class="btn btn-success btn-md hover-overlayed"
+									class="btn btn-success  "
 									style="font-size: 17px" value="<%=LoginCtl.OP_SIGN_IN%>">
 
 								<input type="submit" name="operation"
-									class="btn btn-primary btn-md" style="font-size: 17px"
+									class="btn btn-primary " style="font-size: 17px"
 									value="<%=UserRegistrationCtl.OP_SIGN_UP%>">
 							</div>
 							<div class="text-center">
 								<a href="<%=ORSView.FORGET_PASSWORD_CTL%>"
-									style="color: black; font-size: 15px;"><b><u>Forget
-											my password ?</b></u></a>
+									style="color: black; font-size: 15px;"><b><u>Forget my
+										password ?</b></u></a>
 							</div>
 							<input type="hidden" name="uri" value="<%=uri%>">
 						</div>

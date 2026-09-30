@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="in.co.rays.project_3.dto">
+
+	<class name="FreelancerDTO" table="ST_FREELANCER">
+
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="identity" />
+		</id>
+
+		<property name="name" type="java.lang.String">
+			<column name="NAME" not-null="true" />
+		</property>
+		<property name="skill" type="java.lang.String">
+			<column name="SKILL" />
+		</property>
+		<property name="experience" type="int">
+			<column name="EXPERIENCE" />
+		</property>
+		<property name="hourlyRate" type="double">
+			<column name="HOURLYRATE" />
+		</property>
+	</class>
+</hibernate-mapping>

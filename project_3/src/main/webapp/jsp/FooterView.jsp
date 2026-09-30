@@ -13,7 +13,7 @@
    width: 100%;
    color: white;
    text-align: center;
- background-image:  linear-gradient(to bottom right, red, orange);
+ background-image:  linear-gradient(to bottom right, grey);
 }
 
 </style>

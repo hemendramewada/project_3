@@ -33,16 +33,9 @@
 	}
 </script>
 
-
 <style type="text/css">
 .log1 {
 	padding-top: 2%;
-}
-
-.grad {
-	background-image: linear-gradient(to bottom right, #ffd3ac, #f79d65);
-	background-repeat: no-repeat;
-	background-size: 100%;
 }
 
 i.css {
@@ -56,8 +49,7 @@ i.css {
 }
 
 .p4 {
-	background-image:
-		url('<%=ORSView.APP_CONTEXT%>/img/userRegistration.png');
+	background-image: url('<%=ORSView.APP_CONTEXT%>/img/registeruser1.jpg');
 	background-size: 100%;
 	padding-top: 60px;
 }
@@ -77,7 +69,7 @@ i.css {
 				<!-- Grid column -->
 				<div class="col-md-4 mb-4"></div>
 				<div class="col-md-4 mb-4">
-					<div class="card input-group-addon grad">
+					<div class="card input-group-addon">
 						<div class="card-body">
 
 							<h3 class="text-center default-text text-success pb-2">User
@@ -128,7 +120,7 @@ i.css {
 							<div class="col-sm-12">
 								<div class="input-group">
 									<div class="input-group-prepend">
-										<div class="input-group-text" >
+										<div class="input-group-text">
 											<i class="fa fa-user-alt grey-text" style="font-size: 1rem;"></i>
 										</div>
 									</div>
@@ -258,7 +250,7 @@ i.css {
 									</div>
 									<input type="text" id="datepicker" name="dob"
 										class="form-control" placeholder="Date Of Birth"
-										readonly="readonly" style="background-color: white;	"
+										readonly="readonly"
 										value="<%=DataUtility.getDateString(dto.getDob())%>">
 								</div>
 							</div>
