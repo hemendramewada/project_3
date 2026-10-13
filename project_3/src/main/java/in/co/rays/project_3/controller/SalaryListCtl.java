@@ -135,7 +135,7 @@ public class SalaryListCtl extends BaseCtl {
             } else {
                 ServletUtility.setErrorMessage("Select at least one record", request);
             }
-        }
+        }   
 
         try {
             List list = model.search(dto, pageNo, pageSize);

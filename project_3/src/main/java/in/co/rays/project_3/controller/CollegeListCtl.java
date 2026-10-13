@@ -28,7 +28,7 @@ import in.co.rays.project_3.util.ServletUtility;
 public class CollegeListCtl extends BaseCtl {
 	private static Logger log = Logger.getLogger(CollegeListCtl.class);
      
-	protected void preload(HttpServletRequest request){
+	 protected void preload(HttpServletRequest request){
 		CollegeModelInt model=ModelFactory.getInstance().getCollegeModel(); 
 		try {
 			List list=model.list();
