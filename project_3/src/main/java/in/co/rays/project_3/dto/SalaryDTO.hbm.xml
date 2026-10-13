@@ -13,9 +13,9 @@
 		</id>
 
 		<!-- Unique Salary Code -->
-		<property name="salaryCode" type="java.lang.String">
+		 <property name="salaryCode" type="java.lang.String">
 			<column name="SALARY_CODE" unique="true" not-null="true" />
-	   	</property>
+	    	</property>
 
 		<property name="employeeName" type="java.lang.String">
 			<column name="EMPLOYEE_NAME" />

@@ -16,5 +16,5 @@
         <property name="hospitalName" type="java.lang.String">
             <column name="HOSPITALNAME" />
         </property>
-    </subclass>
+     </subclass>
 </hibernate-mapping>

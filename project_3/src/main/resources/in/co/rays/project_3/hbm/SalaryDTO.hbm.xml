@@ -12,7 +12,7 @@
 			<generator class="identity" />
 		</id>
 
-		<!-- Unique Salary Code -->
+	 	<!-- Unique Salary Code -->
 		<property name="salaryCode" type="java.lang.String">
 			<column name="SALARY_CODE" unique="true" not-null="true" />
 		 </property>

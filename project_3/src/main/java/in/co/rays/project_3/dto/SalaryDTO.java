@@ -46,7 +46,7 @@ public class SalaryDTO extends BaseDTO {
 	}
 
 	@Override
-	public String getValue() {
+	  public String getValue() {
 		// TODO Auto-generated method stub
 		return null;
 	}

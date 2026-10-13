@@ -24,7 +24,7 @@ import in.co.rays.project_3.util.HibDataSource;
 public class VehicleModelHibImpl implements VehicleModelInt {
 
 	@Override
-	public long add(VehicleDTO dto) throws ApplicationException, DuplicateRecordException {
+	  public long add(VehicleDTO dto) throws ApplicationException, DuplicateRecordException {
 
 		VehicleDTO existDto = findByVehicleName(dto.getVehicleName());
 
@@ -32,7 +32,7 @@ public class VehicleModelHibImpl implements VehicleModelInt {
 			throw new DuplicateRecordException("Vehicle Name already exists");
 		}
 
-		Session session = null;
+		 Session session = null;
 		Transaction tx = null;
 
 		try {

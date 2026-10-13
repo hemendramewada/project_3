@@ -15,7 +15,7 @@
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
-	padding-top: 75px;
+   	padding-top: 75px;
 }
 </style>
 </head>

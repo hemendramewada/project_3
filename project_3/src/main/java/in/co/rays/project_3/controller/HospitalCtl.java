@@ -33,7 +33,7 @@ public class HospitalCtl extends BaseCtl {
         }
 
         if (DataValidator.isNull(request.getParameter("hospitalId"))) {
-            request.setAttribute("hospitalId",
+             request.setAttribute("hospitalId",
                     PropertyReader.getValue("error.require", "Hospital ID"));
             pass = false;
         }

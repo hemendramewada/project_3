@@ -28,9 +28,9 @@ public class SalaryCtl extends BaseCtl {
 		boolean pass = true;
 		String op = request.getParameter("operation");
 
-		if (OP_RESET.equalsIgnoreCase(op) || OP_CANCEL.equalsIgnoreCase(op)) {
+		 if (OP_RESET.equalsIgnoreCase(op) || OP_CANCEL.equalsIgnoreCase(op)) {
 			return pass;
-		}
+		 }
 
 		  if (DataValidator.isNull(request.getParameter("salaryCode"))) {
 			request.setAttribute("salaryCode", PropertyReader.getValue("error.require", "Salary Code"));

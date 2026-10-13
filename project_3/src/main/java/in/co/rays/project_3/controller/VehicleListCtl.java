@@ -28,13 +28,13 @@ import in.co.rays.project_3.util.ServletUtility;
 public class VehicleListCtl extends BaseCtl {
 
 	private static final long serialVersionUID = 1L;
-
-	private static Logger log = Logger.getLogger(VehicleListCtl.class);
+   
+    	private static Logger log = Logger.getLogger(VehicleListCtl.class);
 
 	@Override
 	protected BaseDTO populateDTO(HttpServletRequest request) {
 
-		VehicleDTO dto = new VehicleDTO();
+		 VehicleDTO dto = new VehicleDTO();
 
 		dto.setVechicleId(DataUtility.getLong(request.getParameter("vechicleId")));
 

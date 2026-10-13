@@ -9,8 +9,8 @@ public class VehicleDTO extends BaseDTO {
 	private Double price;
 
 	public Long getVechicleId() {
-		return vechicleId;
-	}
+	  	return vechicleId;
+    	}
 
 	public void setVechicleId(Long vechicleId) {
 		this.vechicleId = vechicleId;

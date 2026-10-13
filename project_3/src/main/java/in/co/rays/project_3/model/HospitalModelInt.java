@@ -16,7 +16,7 @@ public interface HospitalModelInt {
 
 	public long add(HospitalDTO dto) throws DatabaseException, DuplicateRecordException;
 
-	public void delete(HospitalDTO dto) throws DatabaseException;
+    	public void delete(HospitalDTO dto) throws DatabaseException;
 
 	public void update(HospitalDTO dto) throws DatabaseException, DuplicateRecordException;
 

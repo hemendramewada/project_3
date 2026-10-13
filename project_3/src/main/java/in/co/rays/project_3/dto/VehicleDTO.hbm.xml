@@ -10,7 +10,7 @@
 
 		<id name="vechicleId" type="java.lang.Long">
 			<column name="VECHICLEID" />
-			<generator class="increment" />
+		   	<generator class="increment" />
 		</id>
 
 		<property name="vehicleName" type="java.lang.String">
@@ -19,7 +19,7 @@
 
 		<property name="model" type="java.lang.String">
 			<column name="MODEL" />
-		</property>
+	   	</property>
 
 		<property name="color" type="java.lang.String">
 			<column name="COLOR" />

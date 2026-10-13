@@ -26,7 +26,7 @@ public class HospitalModelHibImp implements HospitalModelInt {
     @Override
     public long add(HospitalDTO dto) throws DatabaseException, DuplicateRecordException {
 
-        log.info("HospitalModelHibImp add started");
+         log.info("HospitalModelHibImp add started");
 
         HospitalDTO existDto = findByHospitalId(dto.getHospitalId());
         if (existDto != null) {

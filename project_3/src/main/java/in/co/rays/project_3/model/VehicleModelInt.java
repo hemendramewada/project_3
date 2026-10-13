@@ -15,9 +15,9 @@ import in.co.rays.project_3.exception.DuplicateRecordException;
  */
 public interface VehicleModelInt {
 
-	public long nextPK() throws DatabaseException;
+	 public long nextPK() throws DatabaseException;
 
-	public long add(VehicleDTO dto) throws ApplicationException, DuplicateRecordException;
+	 public long add(VehicleDTO dto) throws ApplicationException, DuplicateRecordException;
 
 	public void delete(VehicleDTO dto) throws ApplicationException;
 
@@ -25,7 +25,7 @@ public interface VehicleModelInt {
 
 	public VehicleDTO findByPK(long pk) throws ApplicationException;
 
-	public VehicleDTO findByVehicleName(String vehicleName) throws ApplicationException;
+	 public VehicleDTO findByVehicleName(String vehicleName) throws ApplicationException;
 
 	public List list() throws ApplicationException;
 

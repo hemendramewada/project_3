@@ -20,7 +20,7 @@ public interface SalaryModelInt {
 
 	public void update(SalaryDTO dto) throws DatabaseException, DuplicateRecordException;
 
-	  public List list() throws DatabaseException;
+	    public List list() throws DatabaseException;
 
 	public List search(SalaryDTO dto, int pageNo, int pageSize) throws DatabaseException;
 

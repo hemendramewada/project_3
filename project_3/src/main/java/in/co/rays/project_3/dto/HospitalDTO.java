@@ -20,7 +20,7 @@ public class HospitalDTO extends BaseDTO {
 		return hospitalName;
 	}
 
-	public void setHospitalName(String hospitalName) {
+	 public void setHospitalName(String hospitalName) {
 		this.hospitalName = hospitalName;
 	}
 

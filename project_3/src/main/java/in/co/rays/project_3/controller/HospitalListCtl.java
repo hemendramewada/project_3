@@ -29,7 +29,7 @@ public class HospitalListCtl extends BaseCtl {
             request.setAttribute("hospitalNameList", hospitalList);
 
         } catch (DatabaseException e) {
-            e.printStackTrace();
+             e.printStackTrace();
         }
     }
 

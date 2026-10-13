@@ -30,14 +30,14 @@ public class VehicleCtl extends BaseCtl {
 	@Override
 	protected boolean validate(HttpServletRequest request) {
 
-		boolean pass = true;
+	  	boolean pass = true;
 
 		if (DataValidator.isNull(request.getParameter("vehicleName"))) {
 			request.setAttribute("vehicleName", PropertyReader.getValue("error.require", "Vehicle Name"));
 			pass = false;
 		}
 
-		if (DataValidator.isNull(request.getParameter("model"))) {
+	 	if (DataValidator.isNull(request.getParameter("model"))) {
 			request.setAttribute("model", PropertyReader.getValue("error.require", "Model"));
 			pass = false;
 		}

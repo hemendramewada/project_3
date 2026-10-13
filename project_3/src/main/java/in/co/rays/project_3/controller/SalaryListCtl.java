@@ -28,8 +28,8 @@ public class SalaryListCtl extends BaseCtl {
         try {
             List salaryList = model.list();
             request.setAttribute("salaryList", salaryList);
-  
-        } catch (DatabaseException e) {
+       
+         } catch (DatabaseException e) {
             e.printStackTrace();
         }
     }

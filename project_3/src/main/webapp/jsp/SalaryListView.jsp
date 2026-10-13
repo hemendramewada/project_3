@@ -11,8 +11,8 @@
 <title>Salary List</title>
 
 <link rel="icon" type="image/png"
-	href="<%=ORSView.APP_CONTEXT%>/img/logo.png" sizes="16x16" />
-
+	 href="<%=ORSView.APP_CONTEXT%>/img/logo.png" sizes="16x16" />
+    
 <style>
 .p4 {
 	 background-image: url('<%=ORSView.APP_CONTEXT%>/img/Linkme.jpg');

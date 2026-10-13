@@ -16,7 +16,7 @@
 <style>
 .p4 {
 	background-image: url('<%=ORSView.APP_CONTEXT%>/img/Linkme.jpg');
-	background-size: cover;
+	 background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
 	min-height: 100vh;

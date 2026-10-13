@@ -27,7 +27,7 @@ public class SalaryModelHibImp implements SalaryModelInt {
 	@Override
 	public long add(SalaryDTO dto) throws DatabaseException, DuplicateRecordException {
 
-	   	log.info("SalaryModelHibImp add started");
+	    	log.info("SalaryModelHibImp add started");
 
 		SalaryDTO existDto = findBySalaryCode(dto.getSalaryCode());
 		if (existDto != null) {
@@ -224,7 +224,7 @@ public class SalaryModelHibImp implements SalaryModelInt {
 			throw new DatabaseException("Exception in Salary search");
 		} finally {
 			session.close();
-		}
+		 }
 
 		return list;
 	}
