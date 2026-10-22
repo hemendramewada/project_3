@@ -50,4 +50,4 @@ public class SalaryDTO extends BaseDTO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-}
+}   
