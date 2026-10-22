@@ -8,7 +8,7 @@ public class SalaryDTO extends BaseDTO {
 	String salaryStatus;
 
 	public String getSalaryCode() {
-		return salaryCode;
+		return salaryCode;  
 	  }
 
 	public void setSalaryCode(String salaryCode) {
