@@ -170,4 +170,4 @@ public class SalaryListCtl extends BaseCtl {
     protected String getView() {
         return ORSView.SALARY_LIST_VIEW;
     }
-}
+}  
