@@ -2,7 +2,7 @@ package in.co.rays.project_3.dto;
 
 public class SalaryDTO extends BaseDTO {
 
-	String salaryCode;
+	String salaryCode; 
 	String employeeName;
 	Long salaryAmount;
 	String salaryStatus;
