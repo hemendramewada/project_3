@@ -160,7 +160,7 @@ public class SalaryCtl extends BaseCtl {
 
 			ServletUtility.redirect(ORSView.SALARY_LIST_CTL, req, resp);
 			return;
-		}
+		}  
 
 		ServletUtility.forward(getView(), req, resp);
 	}
